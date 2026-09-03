@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acolad × Ringover — Account brief</title>
+<title data-i18n="title">Acolad × Ringover — Account brief</title>
 <meta name="description" content="Account brief tracking Acolad Group's controlled move off Aircall: pricing, licence sizing, number portability, and next steps.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,6 +101,7 @@
   .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:16px;}
   .brand .dot{width:9px; height:9px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 4px var(--teal-wash);}
   .brand .x{color:var(--ink-faint); font-weight:500; margin:0 2px;}
+  .topbar-controls{display:flex; align-items:center; gap:10px;}
   .sync-pill{
     display:flex; align-items:center; gap:7px;
     font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft);
@@ -113,6 +114,13 @@
     border:1px solid var(--ok); opacity:.5; animation:ping 2.4s ease-out infinite;
   }
   @keyframes ping{ 0%{transform:scale(.6); opacity:.6;} 100%{transform:scale(1.9); opacity:0;} }
+  .lang-toggle{
+    font-family:var(--font-mono); font-size:11.5px; font-weight:600; letter-spacing:.03em;
+    color:var(--ink-soft); background:var(--panel); border:1px solid var(--panel-border); border-radius:99px;
+    padding:7px 14px; cursor:pointer; transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .lang-toggle:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .lang-toggle:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
 
   /* ---------- hero ---------- */
   .hero{padding:64px 0 40px;}
@@ -418,35 +426,38 @@
 <div class="topbar">
   <div class="wrap topbar-inner">
     <div class="brand"><span class="dot"></span> Ringover <span class="x">×</span> Acolad</div>
-    <div class="sync-pill"><span class="led"></span><span>Stage: Discovering</span></div>
+    <div class="topbar-controls">
+      <div class="sync-pill"><span class="led"></span><span data-i18n="stage">Stage: Discovering</span></div>
+      <button type="button" class="lang-toggle" id="langToggle" aria-label="Switch language / Changer de langue">FR</button>
+    </div>
   </div>
 </div>
 
-<nav class="side-nav" aria-label="Quick navigation">
-  <a class="side-nav-item active" href="#hero" data-target="hero"><span class="tick"></span><span class="side-label">Home</span></a>
-  <a class="side-nav-item" href="#team" data-target="team"><span class="tick"></span><span class="side-label">Team</span></a>
-  <a class="side-nav-item" href="#account-overview" data-target="account-overview"><span class="tick"></span><span class="side-label">Account overview</span></a>
-  <a class="side-nav-item" href="#priority-needs" data-target="priority-needs"><span class="tick"></span><span class="side-label">Priority needs</span></a>
-  <a class="side-nav-item" href="#solution-fit" data-target="solution-fit"><span class="tick"></span><span class="side-label">Solution fit</span></a>
-  <a class="side-nav-item" href="#pricing" data-target="pricing"><span class="tick"></span><span class="side-label">Licensing &amp; pricing</span></a>
-  <a class="side-nav-item" href="#next-steps" data-target="next-steps"><span class="tick"></span><span class="side-label">Next steps</span></a>
+<nav class="side-nav" aria-label="Quick navigation" id="sideNav">
+  <a class="side-nav-item active" href="#hero" data-target="hero"><span class="tick"></span><span class="side-label" data-i18n="nav-home">Home</span></a>
+  <a class="side-nav-item" href="#team" data-target="team"><span class="tick"></span><span class="side-label" data-i18n="nav-team">Team</span></a>
+  <a class="side-nav-item" href="#account-overview" data-target="account-overview"><span class="tick"></span><span class="side-label" data-i18n="nav-account">Account overview</span></a>
+  <a class="side-nav-item" href="#priority-needs" data-target="priority-needs"><span class="tick"></span><span class="side-label" data-i18n="nav-needs">Priority needs</span></a>
+  <a class="side-nav-item" href="#solution-fit" data-target="solution-fit"><span class="tick"></span><span class="side-label" data-i18n="nav-solution">Solution fit</span></a>
+  <a class="side-nav-item" href="#pricing" data-target="pricing"><span class="tick"></span><span class="side-label" data-i18n="nav-pricing">Licensing &amp; pricing</span></a>
+  <a class="side-nav-item" href="#next-steps" data-target="next-steps"><span class="tick"></span><span class="side-label" data-i18n="nav-next">Next steps</span></a>
 </nav>
 
 <header class="hero" id="hero">
   <div class="wrap">
-    <span class="eyebrow">Account brief · Aircall replacement</span>
-    <h1>The Ringover file for Acolad</h1>
-    <p class="lede">
+    <span class="eyebrow" data-i18n="hero-eyebrow">Account brief · Aircall replacement</span>
+    <h1 data-i18n="hero-h1">The Ringover file for Acolad</h1>
+    <p class="lede" data-i18n="hero-lede">
       Acolad Group's active need is a controlled move off Aircall — with pricing, licence sizing, number portability,
       and internal alignment still to settle. This page tracks what we know, what's still open, and the next steps
       to move the deal forward.
     </p>
     <div class="stat-strip" id="heroStats">
-      <div class="stat"><div class="num">Discovering</div><div class="label">Deal stage</div></div>
-      <div class="stat"><div class="num">430</div><div class="label">Licences discussed (300 standard + 130 Salesforce)</div></div>
-      <div class="stat"><div class="num">15</div><div class="label">Calls reviewed</div></div>
-      <div class="stat"><div class="num">25</div><div class="label">Account activity rows reviewed</div></div>
-      <div class="stat bad"><div class="num">0</div><div class="label">Activities logged on the open opportunity</div></div>
+      <div class="stat"><div class="num" data-i18n="stat1-num">Discovering</div><div class="label" data-i18n="stat1-label">Deal stage</div></div>
+      <div class="stat"><div class="num">430</div><div class="label" data-i18n="stat2-label">Licences discussed (300 standard + 130 Salesforce)</div></div>
+      <div class="stat"><div class="num">15</div><div class="label" data-i18n="stat3-label">Calls reviewed</div></div>
+      <div class="stat"><div class="num">25</div><div class="label" data-i18n="stat4-label">Account activity rows reviewed</div></div>
+      <div class="stat bad"><div class="num">0</div><div class="label" data-i18n="stat5-label">Activities logged on the open opportunity</div></div>
     </div>
   </div>
 </header>
@@ -460,8 +471,8 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>The Ringover team on Acolad</h2>
-        <p>The people involved on the Ringover side of the account.</p>
+        <h2 data-i18n="team-h2">The Ringover team on Acolad</h2>
+        <p data-i18n="team-p">The people involved on the Ringover side of the account.</p>
       </div>
     </div>
     <div class="person-grid">
@@ -469,19 +480,19 @@
         <div class="avatar">JV</div>
         <span class="suite-tag">Account Executive</span>
         <h3>Josua Vischel</h3>
-        <p>Owns the account and the commercial relationship on the deal.</p>
+        <p data-i18n="person1-desc">Owns the account and the commercial relationship on the deal.</p>
       </div>
       <div class="person-card">
         <div class="avatar">SB</div>
         <span class="suite-tag">Lead Solution Engineer</span>
         <h3>Sébastien Bruno</h3>
-        <p>Leads the functional and technical scoping of the Aircall replacement.</p>
+        <p data-i18n="person2-desc">Leads the functional and technical scoping of the Aircall replacement.</p>
       </div>
       <div class="person-card">
         <div class="avatar">N</div>
         <span class="suite-tag">Account Executive</span>
         <h3>Narges</h3>
-        <p>Account Executive supporting the deal alongside Josua.</p>
+        <p data-i18n="person3-desc">Account Executive supporting the deal alongside Josua.</p>
       </div>
     </div>
   </div>
@@ -491,28 +502,28 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <span class="eyebrow">Account</span>
-        <h2>Acolad group</h2>
-        <p>Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.</p>
+        <span class="eyebrow" data-i18n="acct-eyebrow">Account</span>
+        <h2 data-i18n="acct-h2">Acolad group</h2>
+        <p data-i18n="acct-p">Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.</p>
       </div>
     </div>
 
     <div class="phase-meta">
       <div class="phase-meta-item">
-        <div class="k">Owner</div>
+        <div class="k" data-i18n="meta1-k">Owner</div>
         <div class="v">Josua Vischel</div>
       </div>
       <div class="phase-meta-item">
-        <div class="k">Location</div>
+        <div class="k" data-i18n="meta2-k">Location</div>
         <div class="v">Boulogne-Billancourt, France</div>
       </div>
       <div class="phase-meta-item">
-        <div class="k">Open opportunity</div>
-        <div class="v">Sized at 250 licences <span style="color:var(--warn); font-weight:600;">— doesn't yet match the 300 / 130 (430 total) split referenced in the pricing thread</span></div>
+        <div class="k" data-i18n="meta3-k">Open opportunity</div>
+        <div class="v" data-i18n="meta3-v">Sized at 250 licences <span style="color:var(--warn); font-weight:600;">— doesn't yet match the 300 / 130 (430 total) split referenced in the pricing thread</span></div>
       </div>
     </div>
 
-    <p class="count-note" style="margin-top:20px; font-size:13px;">
+    <p class="count-note" style="margin-top:20px; font-size:13px;" data-i18n="acct-note">
       Evidence base: 15 calls and 25 account activity rows reviewed. The open opportunity itself currently has no
       activities logged against it — worth closing as a CRM hygiene item alongside the commercial next steps below.
     </p>
@@ -523,8 +534,8 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Priority needs</h2>
-        <p>What Acolad needs resolved, ranked by priority, with the evidence behind each one.</p>
+        <h2 data-i18n="needs-h2">Priority needs</h2>
+        <p data-i18n="needs-p">What Acolad needs resolved, ranked by priority, with the evidence behind each one.</p>
       </div>
     </div>
 
@@ -533,14 +544,14 @@
         <div class="detail-num">1</div>
         <div>
           <div class="need-head">
-            <h4>Controlled transition off Aircall</h4>
-            <span class="badge bad"><span class="d"></span>High priority</span>
+            <h4 data-i18n="need1-title">Controlled transition off Aircall</h4>
+            <span class="badge bad"><span class="d"></span><span data-i18n="need1-badge">High priority</span></span>
           </div>
-          <p>They need a low-risk replacement plan that avoids service disruption and handles the renewal window cleanly.</p>
+          <p data-i18n="need1-desc">They need a low-risk replacement plan that avoids service disruption and handles the renewal window cleanly.</p>
           <div class="need-evidence">
-            <span class="ref-label">Evidence:</span>
-            <span class="ref-chip">Aircall transition &amp; renewal call · 2025-11-24</span>
-            <span class="ref-chip">Pricing / migration review · 2025-11-27</span>
+            <span class="ref-label" data-i18n="ev-label">Evidence:</span>
+            <span class="ref-chip" data-i18n="need1-ev1">Aircall transition &amp; renewal call · 2025-11-24</span>
+            <span class="ref-chip" data-i18n="need1-ev2">Pricing / migration review · 2025-11-27</span>
           </div>
         </div>
       </div>
@@ -549,14 +560,14 @@
         <div class="detail-num">2</div>
         <div>
           <div class="need-head">
-            <h4>Clear pricing and packaging</h4>
-            <span class="badge bad"><span class="d"></span>High priority</span>
+            <h4 data-i18n="need2-title">Clear pricing and packaging</h4>
+            <span class="badge bad"><span class="d"></span><span data-i18n="need1-badge">High priority</span></span>
           </div>
-          <p>They need a commercial proposal split around 300 standard licences and 130 Salesforce-integrated licences; the broader thread also references 430 licences total.</p>
+          <p data-i18n="need2-desc">They need a commercial proposal split around 300 standard licences and 130 Salesforce-integrated licences; the broader thread also references 430 licences total.</p>
           <div class="need-evidence">
-            <span class="ref-label">Evidence:</span>
-            <span class="ref-chip">CRM activity notes · 2025-11-24</span>
-            <span class="ref-chip">Pricing / migration review · 2025-11-27</span>
+            <span class="ref-label" data-i18n="ev-label">Evidence:</span>
+            <span class="ref-chip" data-i18n="need2-ev1">CRM activity notes · 2025-11-24</span>
+            <span class="ref-chip" data-i18n="need1-ev2">Pricing / migration review · 2025-11-27</span>
           </div>
         </div>
       </div>
@@ -565,14 +576,14 @@
         <div class="detail-num">3</div>
         <div>
           <div class="need-head">
-            <h4>Number portability and multi-country rollout</h4>
-            <span class="badge bad"><span class="d"></span>High priority</span>
+            <h4 data-i18n="need3-title">Number portability and multi-country rollout</h4>
+            <span class="badge bad"><span class="d"></span><span data-i18n="need1-badge">High priority</span></span>
           </div>
-          <p>They need confirmation on porting constraints and how numbers are handled across countries.</p>
+          <p data-i18n="need3-desc">They need confirmation on porting constraints and how numbers are handled across countries.</p>
           <div class="need-evidence">
-            <span class="ref-label">Evidence:</span>
-            <span class="ref-chip">Transition planning · 2025-11-24</span>
-            <span class="ref-chip">CRM activity notes on porting &amp; country-specific addresses</span>
+            <span class="ref-label" data-i18n="ev-label">Evidence:</span>
+            <span class="ref-chip" data-i18n="need3-ev1">Transition planning · 2025-11-24</span>
+            <span class="ref-chip" data-i18n="need3-ev2">CRM activity notes on porting &amp; country-specific addresses</span>
           </div>
         </div>
       </div>
@@ -581,13 +592,13 @@
         <div class="detail-num">4</div>
         <div>
           <div class="need-head">
-            <h4>Stakeholder alignment</h4>
-            <span class="badge warn"><span class="d"></span>Medium priority</span>
+            <h4 data-i18n="need4-title">Stakeholder alignment</h4>
+            <span class="badge warn"><span class="d"></span><span data-i18n="need4-badge">Medium priority</span></span>
           </div>
-          <p>The team needs the right internal owners looped in before the next decision step; Mathieu is not the sole owner of the topic.</p>
+          <p data-i18n="need4-desc">The team needs the right internal owners looped in before the next decision step; Mathieu is not the sole owner of the topic.</p>
           <div class="need-evidence">
-            <span class="ref-label">Evidence:</span>
-            <span class="ref-chip">Routing / handoff call · 2026-06-23</span>
+            <span class="ref-label" data-i18n="ev-label">Evidence:</span>
+            <span class="ref-chip" data-i18n="need4-ev1">Routing / handoff call · 2026-06-23</span>
           </div>
         </div>
       </div>
@@ -596,13 +607,13 @@
         <div class="detail-num">5</div>
         <div>
           <div class="need-head">
-            <h4>Demo / workshop validation</h4>
-            <span class="badge warn"><span class="d"></span>Medium priority</span>
+            <h4 data-i18n="need5-title">Demo / workshop validation</h4>
+            <span class="badge warn"><span class="d"></span><span data-i18n="need4-badge">Medium priority</span></span>
           </div>
-          <p>They want to prepare the demo around their key points and only proceed to a workshop if it fits the team.</p>
+          <p data-i18n="need5-desc">They want to prepare the demo around their key points and only proceed to a workshop if it fits the team.</p>
           <div class="need-evidence">
-            <span class="ref-label">Evidence:</span>
-            <span class="ref-chip">CRM SMS activity · 2025-11-24 (demo prep &amp; workshop alignment)</span>
+            <span class="ref-label" data-i18n="ev-label">Evidence:</span>
+            <span class="ref-chip" data-i18n="need5-ev1">CRM SMS activity · 2025-11-24 (demo prep &amp; workshop alignment)</span>
           </div>
         </div>
       </div>
@@ -619,43 +630,43 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>How Ringover addresses it</h2>
-        <p>Mapping the three highest-priority needs to how Ringover is built to handle them.</p>
+        <h2 data-i18n="sol-h2">How Ringover addresses it</h2>
+        <p data-i18n="sol-p">Mapping the three highest-priority needs to how Ringover is built to handle them.</p>
       </div>
     </div>
     <div class="suite-group">
       <div class="suite-grid">
         <div class="suite-card ringover">
           <div class="suite-icon">M</div>
-          <span class="suite-tag">Aircall replacement</span>
-          <h3>Controlled migration</h3>
-          <p>A staged cutover designed to avoid service disruption and land cleanly inside the Aircall renewal window.</p>
+          <span class="suite-tag" data-i18n="card1-tag">Aircall replacement</span>
+          <h3 data-i18n="card1-h3">Controlled migration</h3>
+          <p data-i18n="card1-p">A staged cutover designed to avoid service disruption and land cleanly inside the Aircall renewal window.</p>
           <ul class="suite-features">
-            <li><span class="tick">✓</span>Parallel run before final cutover, with a tested rollback plan</li>
-            <li><span class="tick">✓</span>Cutover timed to the current renewal / contract end dates</li>
-            <li><span class="tick">✓</span>Dedicated Technical Account Manager for the transition</li>
+            <li><span class="tick">✓</span><span data-i18n="card1-li1">Parallel run before final cutover, with a tested rollback plan</span></li>
+            <li><span class="tick">✓</span><span data-i18n="card1-li2">Cutover timed to the current renewal / contract end dates</span></li>
+            <li><span class="tick">✓</span><span data-i18n="card1-li3">Dedicated Technical Account Manager for the transition</span></li>
           </ul>
         </div>
         <div class="suite-card airo">
           <div class="suite-icon">P</div>
-          <span class="suite-tag">Multi-country</span>
-          <h3>Number portability</h3>
-          <p>End-to-end handling of the porting process across Acolad's countries and entities.</p>
+          <span class="suite-tag" data-i18n="card2-tag">Multi-country</span>
+          <h3 data-i18n="card2-h3">Number portability</h3>
+          <p data-i18n="card2-p">End-to-end handling of the porting process across Acolad's countries and entities.</p>
           <ul class="suite-features">
-            <li><span class="tick">✓</span>Porting documents (RIO, mandates) collected and processed for you</li>
-            <li><span class="tick">✓</span>Per-country number handling and address constraints clarified upfront</li>
-            <li><span class="tick">✓</span>No service interruption during the number switch-over</li>
+            <li><span class="tick">✓</span><span data-i18n="card2-li1">Porting documents (RIO, mandates) collected and processed for you</span></li>
+            <li><span class="tick">✓</span><span data-i18n="card2-li2">Per-country number handling and address constraints clarified upfront</span></li>
+            <li><span class="tick">✓</span><span data-i18n="card2-li3">No service interruption during the number switch-over</span></li>
           </ul>
         </div>
         <div class="suite-card salesforce">
           <div class="suite-icon">SF</div>
           <span class="suite-tag">130 licences</span>
-          <h3>Native Salesforce integration</h3>
-          <p>For the Salesforce-integrated package: calls are logged without manual re-entry by the agent.</p>
+          <h3 data-i18n="card3-h3">Native Salesforce integration</h3>
+          <p data-i18n="card3-p">For the Salesforce-integrated package: calls are logged without manual re-entry by the agent.</p>
           <ul class="suite-features">
-            <li><span class="tick">✓</span>Automatic contact &amp; case creation on incoming/outgoing calls</li>
-            <li><span class="tick">✓</span>Autofill of CRM fields (duration, status, summary)</li>
-            <li><span class="tick">✓</span>Call summaries logged automatically to the record</li>
+            <li><span class="tick">✓</span><span data-i18n="card3-li1">Automatic contact &amp; case creation on incoming/outgoing calls</span></li>
+            <li><span class="tick">✓</span><span data-i18n="card3-li2">Autofill of CRM fields (duration, status, summary)</span></li>
+            <li><span class="tick">✓</span><span data-i18n="card3-li3">Call summaries logged automatically to the record</span></li>
           </ul>
         </div>
       </div>
@@ -667,60 +678,60 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Licensing &amp; pricing</h2>
-        <p>The licence split under discussion, and what still needs to be settled before the next proposal.</p>
+        <h2 data-i18n="pricing-h2">Licensing &amp; pricing</h2>
+        <p data-i18n="pricing-p">The licence split under discussion, and what still needs to be settled before the next proposal.</p>
       </div>
     </div>
 
     <div class="pricing-context">
-      <span class="lock-badge">Pricing not yet settled</span>
-      <p>The commercial thread references two overlapping numbers: a 300 standard + 130 Salesforce-integrated licence
+      <span class="lock-badge" data-i18n="pricing-badge">Pricing not yet settled</span>
+      <p data-i18n="pricing-p1">The commercial thread references two overlapping numbers: a 300 standard + 130 Salesforce-integrated licence
         split (430 total), and a 250-licence sizing on the open opportunity itself. These need to be reconciled
         before the next proposal goes out.</p>
-      <p>The revised proposal should lay out the assumptions behind each package — what's included in the standard
+      <p data-i18n="pricing-p2">The revised proposal should lay out the assumptions behind each package — what's included in the standard
         tier versus the Salesforce-integrated tier — so Acolad's team can compare it cleanly against Aircall within
         the renewal window.</p>
     </div>
 
     <div class="stat-strip pricing-summary">
-      <div class="stat"><div class="num">300</div><div class="label">Standard licences (proposed)</div></div>
-      <div class="stat"><div class="num">130</div><div class="label">Salesforce-integrated licences (proposed)</div></div>
-      <div class="stat"><div class="num">430</div><div class="label">Total referenced in the broader thread</div></div>
-      <div class="stat warn"><div class="num">250</div><div class="label">Currently sized in the open opportunity — needs reconciliation</div></div>
+      <div class="stat"><div class="num">300</div><div class="label" data-i18n="pstat1-label">Standard licences (proposed)</div></div>
+      <div class="stat"><div class="num">130</div><div class="label" data-i18n="pstat2-label">Salesforce-integrated licences (proposed)</div></div>
+      <div class="stat"><div class="num">430</div><div class="label" data-i18n="pstat3-label">Total referenced in the broader thread</div></div>
+      <div class="stat warn"><div class="num">250</div><div class="label" data-i18n="pstat4-label">Currently sized in the open opportunity — needs reconciliation</div></div>
     </div>
 
     <div class="table-block">
       <div class="table-block-head">
-        <h3>Proposed licence split</h3>
-        <span class="table-note">Figures still to be priced</span>
+        <h3 data-i18n="table-h3">Proposed licence split</h3>
+        <span class="table-note" data-i18n="table-note">Figures still to be priced</span>
       </div>
       <div class="table-panel">
         <div class="table-scroll">
           <table>
             <thead>
-              <tr><th>Licence type</th><th>Quantity</th><th>List price</th><th>Your price</th><th>Notes</th></tr>
+              <tr><th data-i18n="th1">Licence type</th><th data-i18n="th2">Quantity</th><th data-i18n="th3">List price</th><th data-i18n="th4">Your price</th><th data-i18n="th5">Notes</th></tr>
             </thead>
             <tbody>
               <tr>
-                <td>Standard licence</td>
+                <td data-i18n="row1-type">Standard licence</td>
                 <td>300</td>
-                <td><span class="blank-cell">TBD</span></td>
-                <td><span class="blank-cell">TBD</span></td>
-                <td class="chapitre">Core calling functionality</td>
+                <td><span class="blank-cell" data-i18n="blank">TBD</span></td>
+                <td><span class="blank-cell" data-i18n="blank">TBD</span></td>
+                <td class="chapitre" data-i18n="row1-note">Core calling functionality</td>
               </tr>
               <tr>
-                <td>Salesforce-integrated licence</td>
+                <td data-i18n="row2-type">Salesforce-integrated licence</td>
                 <td>130</td>
-                <td><span class="blank-cell">TBD</span></td>
-                <td><span class="blank-cell">TBD</span></td>
-                <td class="chapitre">Includes native Salesforce CTI: contact, case, autofill</td>
+                <td><span class="blank-cell" data-i18n="blank">TBD</span></td>
+                <td><span class="blank-cell" data-i18n="blank">TBD</span></td>
+                <td class="chapitre" data-i18n="row2-note">Includes native Salesforce CTI: contact, case, autofill</td>
               </tr>
               <tr class="total-row-line">
-                <td>Total (broader thread)</td>
+                <td data-i18n="total-type">Total (broader thread)</td>
                 <td>430</td>
                 <td></td>
                 <td></td>
-                <td class="chapitre">Reconcile against the 250-licence sizing on the open opportunity</td>
+                <td class="chapitre" data-i18n="total-note">Reconcile against the 250-licence sizing on the open opportunity</td>
               </tr>
             </tbody>
           </table>
@@ -734,8 +745,8 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Next steps</h2>
-        <p>What needs to happen, in order, to keep the deal moving.</p>
+        <h2 data-i18n="next-h2">Next steps</h2>
+        <p data-i18n="next-p">What needs to happen, in order, to keep the deal moving.</p>
       </div>
     </div>
 
@@ -743,29 +754,29 @@
       <div class="detail-card">
         <div class="detail-num">1</div>
         <div>
-          <h4>Send the revised proposal</h4>
-          <p>Send a revised proposal with the 300 / 130 licence split and the assumptions behind each package.</p>
+          <h4 data-i18n="next1-h4">Send the revised proposal</h4>
+          <p data-i18n="next1-p">Send a revised proposal with the 300 / 130 licence split and the assumptions behind each package.</p>
         </div>
       </div>
       <div class="detail-card">
         <div class="detail-num">2</div>
         <div>
-          <h4>Confirm the renewal safety net</h4>
-          <p>Confirm contract end dates, renewal constraints, and the safest portability plan.</p>
+          <h4 data-i18n="next2-h4">Confirm the renewal safety net</h4>
+          <p data-i18n="next2-p">Confirm contract end dates, renewal constraints, and the safest portability plan.</p>
         </div>
       </div>
       <div class="detail-card">
         <div class="detail-num">3</div>
         <div>
-          <h4>Align the internal stakeholders</h4>
-          <p>Loop in the right stakeholders from sales, ops, and IT to validate the decision path.</p>
+          <h4 data-i18n="next3-h4">Align the internal stakeholders</h4>
+          <p data-i18n="next3-p">Loop in the right stakeholders from sales, ops, and IT to validate the decision path.</p>
         </div>
       </div>
       <div class="detail-card">
         <div class="detail-num">4</div>
         <div>
-          <h4>Book the workshop</h4>
-          <p>Book a short workshop only after pricing and migration questions are fully answered.</p>
+          <h4 data-i18n="next4-h4">Book the workshop</h4>
+          <p data-i18n="next4-p">Book a short workshop only after pricing and migration questions are fully answered.</p>
         </div>
       </div>
     </div>
@@ -776,13 +787,166 @@
   <div class="wrap footer-row">
     <div>
       <p class="foot-brand">Ringover</p>
-      <p>Account brief for Acolad — compiled from CRM activity and call review.</p>
+      <p data-i18n="foot-note">Account brief for Acolad — compiled from CRM activity and call review.</p>
     </div>
-    <p>Last updated September 3, 2026</p>
+    <p data-i18n="foot-date">Last updated September 3, 2026</p>
   </div>
 </footer>
 
 <script>
+/* ---------- i18n: EN / FR toggle ---------- */
+const I18N = {
+  "title": {en:"Acolad × Ringover — Account brief", fr:"Acolad × Ringover — Dossier de compte"},
+  "stage": {en:"Stage: Discovering", fr:"Étape : Découverte"},
+  "nav-home": {en:"Home", fr:"Accueil"},
+  "nav-team": {en:"Team", fr:"Équipe"},
+  "nav-account": {en:"Account overview", fr:"Aperçu du compte"},
+  "nav-needs": {en:"Priority needs", fr:"Besoins prioritaires"},
+  "nav-solution": {en:"Solution fit", fr:"Réponse Ringover"},
+  "nav-pricing": {en:"Licensing &amp; pricing", fr:"Licences &amp; tarification"},
+  "nav-next": {en:"Next steps", fr:"Prochaines étapes"},
+  "hero-eyebrow": {en:"Account brief · Aircall replacement", fr:"Dossier de compte · Remplacement Aircall"},
+  "hero-h1": {en:"The Ringover file for Acolad", fr:"Le dossier Ringover pour Acolad"},
+  "hero-lede": {
+    en:"Acolad Group's active need is a controlled move off Aircall — with pricing, licence sizing, number portability, and internal alignment still to settle. This page tracks what we know, what's still open, and the next steps to move the deal forward.",
+    fr:"Le besoin actif du groupe Acolad est une bascule maîtrisée hors d'Aircall — avec la tarification, le dimensionnement des licences, la portabilité des numéros et l'alignement interne encore à finaliser. Cette page suit ce que nous savons, ce qui reste ouvert, et les prochaines étapes pour faire avancer le dossier."
+  },
+  "stat1-num": {en:"Discovering", fr:"En découverte"},
+  "stat1-label": {en:"Deal stage", fr:"Étape du dossier"},
+  "stat2-label": {en:"Licences discussed (300 standard + 130 Salesforce)", fr:"Licences évoquées (300 standard + 130 Salesforce)"},
+  "stat3-label": {en:"Calls reviewed", fr:"Appels analysés"},
+  "stat4-label": {en:"Account activity rows reviewed", fr:"Lignes d'activité du compte analysées"},
+  "stat5-label": {en:"Activities logged on the open opportunity", fr:"Activités enregistrées sur l'opportunité ouverte"},
+  "team-h2": {en:"The Ringover team on Acolad", fr:"L'équipe Ringover sur Acolad"},
+  "team-p": {en:"The people involved on the Ringover side of the account.", fr:"Les personnes impliquées côté Ringover sur ce compte."},
+  "person1-desc": {en:"Owns the account and the commercial relationship on the deal.", fr:"Porte le compte et la relation commerciale sur ce dossier."},
+  "person2-desc": {en:"Leads the functional and technical scoping of the Aircall replacement.", fr:"Pilote le cadrage fonctionnel et technique du remplacement d'Aircall."},
+  "person3-desc": {en:"Account Executive supporting the deal alongside Josua.", fr:"Account Executive en soutien sur le dossier, aux côtés de Josua."},
+  "acct-eyebrow": {en:"Account", fr:"Compte"},
+  "acct-h2": {en:"Acolad group", fr:"Groupe Acolad"},
+  "acct-p": {en:"Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.", fr:"Photographie de l'état du compte à date, sur la base des appels et de l'activité CRM analysés jusqu'ici."},
+  "meta1-k": {en:"Owner", fr:"Propriétaire"},
+  "meta2-k": {en:"Location", fr:"Localisation"},
+  "meta3-k": {en:"Open opportunity", fr:"Opportunité ouverte"},
+  "meta3-v": {
+    en:"Sized at 250 licences <span style=\"color:var(--warn); font-weight:600;\">— doesn't yet match the 300 / 130 (430 total) split referenced in the pricing thread</span>",
+    fr:"Dimensionnée à 250 licences <span style=\"color:var(--warn); font-weight:600;\">— ne correspond pas encore à la répartition 300 / 130 (430 au total) évoquée dans le fil tarifaire</span>"
+  },
+  "acct-note": {
+    en:"Evidence base: 15 calls and 25 account activity rows reviewed. The open opportunity itself currently has no activities logged against it — worth closing as a CRM hygiene item alongside the commercial next steps below.",
+    fr:"Base d'évidence : 15 appels et 25 lignes d'activité du compte analysés. L'opportunité ouverte elle-même n'a actuellement aucune activité enregistrée — un point d'hygiène CRM à traiter en parallèle des prochaines étapes commerciales ci-dessous."
+  },
+  "needs-h2": {en:"Priority needs", fr:"Besoins prioritaires"},
+  "needs-p": {en:"What Acolad needs resolved, ranked by priority, with the evidence behind each one.", fr:"Ce qu'Acolad a besoin de voir résolu, classé par priorité, avec les éléments qui l'attestent."},
+  "ev-label": {en:"Evidence:", fr:"Éléments :"},
+  "need1-title": {en:"Controlled transition off Aircall", fr:"Bascule maîtrisée hors d'Aircall"},
+  "need1-badge": {en:"High priority", fr:"Priorité haute"},
+  "need1-desc": {en:"They need a low-risk replacement plan that avoids service disruption and handles the renewal window cleanly.", fr:"Ils ont besoin d'un plan de remplacement à faible risque, qui évite toute interruption de service et gère proprement la fenêtre de renouvellement."},
+  "need1-ev1": {en:"Aircall transition &amp; renewal call · 2025-11-24", fr:"Appel transition &amp; renouvellement Aircall · 24/11/2025"},
+  "need1-ev2": {en:"Pricing / migration review · 2025-11-27", fr:"Revue tarification / migration · 27/11/2025"},
+  "need2-title": {en:"Clear pricing and packaging", fr:"Tarification et packaging clairs"},
+  "need2-desc": {en:"They need a commercial proposal split around 300 standard licences and 130 Salesforce-integrated licences; the broader thread also references 430 licences total.", fr:"Ils ont besoin d'une proposition commerciale organisée autour de 300 licences standard et 130 licences intégrées à Salesforce ; le fil de discussion plus large évoque aussi 430 licences au total."},
+  "need2-ev1": {en:"CRM activity notes · 2025-11-24", fr:"Notes d'activité CRM · 24/11/2025"},
+  "need3-title": {en:"Number portability and multi-country rollout", fr:"Portabilité des numéros et déploiement multi-pays"},
+  "need3-desc": {en:"They need confirmation on porting constraints and how numbers are handled across countries.", fr:"Ils ont besoin d'une confirmation sur les contraintes de portabilité et la gestion des numéros selon les pays."},
+  "need3-ev1": {en:"Transition planning · 2025-11-24", fr:"Planification de la transition · 24/11/2025"},
+  "need3-ev2": {en:"CRM activity notes on porting &amp; country-specific addresses", fr:"Notes d'activité CRM sur la portabilité et les adresses par pays"},
+  "need4-title": {en:"Stakeholder alignment", fr:"Alignement des parties prenantes"},
+  "need4-badge": {en:"Medium priority", fr:"Priorité moyenne"},
+  "need4-desc": {en:"The team needs the right internal owners looped in before the next decision step; Mathieu is not the sole owner of the topic.", fr:"L'équipe a besoin d'impliquer les bons interlocuteurs internes avant la prochaine étape de décision ; Mathieu n'est pas seul décisionnaire sur le sujet."},
+  "need4-ev1": {en:"Routing / handoff call · 2026-06-23", fr:"Appel de routage / passation · 23/06/2026"},
+  "need5-title": {en:"Demo / workshop validation", fr:"Validation démo / atelier"},
+  "need5-desc": {en:"They want to prepare the demo around their key points and only proceed to a workshop if it fits the team.", fr:"Ils souhaitent préparer la démo autour de leurs points clés et ne passer à un atelier que si cela convient à l'équipe."},
+  "need5-ev1": {en:"CRM SMS activity · 2025-11-24 (demo prep &amp; workshop alignment)", fr:"Activité SMS CRM · 24/11/2025 (préparation démo &amp; alignement atelier)"},
+  "sol-h2": {en:"How Ringover addresses it", fr:"Comment Ringover y répond"},
+  "sol-p": {en:"Mapping the three highest-priority needs to how Ringover is built to handle them.", fr:"Mise en correspondance des trois besoins les plus prioritaires avec la façon dont Ringover y répond."},
+  "card1-tag": {en:"Aircall replacement", fr:"Remplacement d'Aircall"},
+  "card1-h3": {en:"Controlled migration", fr:"Migration maîtrisée"},
+  "card1-p": {en:"A staged cutover designed to avoid service disruption and land cleanly inside the Aircall renewal window.", fr:"Une bascule progressive conçue pour éviter toute interruption de service et s'inscrire proprement dans la fenêtre de renouvellement d'Aircall."},
+  "card1-li1": {en:"Parallel run before final cutover, with a tested rollback plan", fr:"Fonctionnement en parallèle avant la bascule finale, avec un plan de retour arrière testé"},
+  "card1-li2": {en:"Cutover timed to the current renewal / contract end dates", fr:"Bascule calée sur les dates de renouvellement / fin de contrat actuelles"},
+  "card1-li3": {en:"Dedicated Technical Account Manager for the transition", fr:"Technical Account Manager dédié pour la transition"},
+  "card2-tag": {en:"Multi-country", fr:"Multi-pays"},
+  "card2-h3": {en:"Number portability", fr:"Portabilité des numéros"},
+  "card2-p": {en:"End-to-end handling of the porting process across Acolad's countries and entities.", fr:"Prise en charge de bout en bout du processus de portabilité sur l'ensemble des pays et entités d'Acolad."},
+  "card2-li1": {en:"Porting documents (RIO, mandates) collected and processed for you", fr:"Documents de portabilité (RIO, mandats) collectés et traités pour vous"},
+  "card2-li2": {en:"Per-country number handling and address constraints clarified upfront", fr:"Gestion des numéros par pays et contraintes d'adresse clarifiées en amont"},
+  "card2-li3": {en:"No service interruption during the number switch-over", fr:"Aucune interruption de service lors de la bascule des numéros"},
+  "card3-h3": {en:"Native Salesforce integration", fr:"Intégration native Salesforce"},
+  "card3-p": {en:"For the Salesforce-integrated package: calls are logged without manual re-entry by the agent.", fr:"Pour le pack intégré à Salesforce : les appels sont consignés sans ressaisie manuelle par l'agent."},
+  "card3-li1": {en:"Automatic contact &amp; case creation on incoming/outgoing calls", fr:"Création automatique de contact &amp; case sur les appels entrants/sortants"},
+  "card3-li2": {en:"Autofill of CRM fields (duration, status, summary)", fr:"Remplissage automatique des champs CRM (durée, statut, résumé)"},
+  "card3-li3": {en:"Call summaries logged automatically to the record", fr:"Comptes rendus d'appel consignés automatiquement sur la fiche"},
+  "pricing-h2": {en:"Licensing &amp; pricing", fr:"Licences &amp; tarification"},
+  "pricing-p": {en:"The licence split under discussion, and what still needs to be settled before the next proposal.", fr:"La répartition des licences en discussion, et ce qu'il reste à trancher avant la prochaine proposition."},
+  "pricing-badge": {en:"Pricing not yet settled", fr:"Tarification non finalisée"},
+  "pricing-p1": {
+    en:"The commercial thread references two overlapping numbers: a 300 standard + 130 Salesforce-integrated licence split (430 total), and a 250-licence sizing on the open opportunity itself. These need to be reconciled before the next proposal goes out.",
+    fr:"Le fil commercial fait référence à deux chiffres qui se chevauchent : une répartition 300 licences standard + 130 licences intégrées Salesforce (430 au total), et un dimensionnement à 250 licences sur l'opportunité ouverte elle-même. Ces chiffres doivent être réconciliés avant l'envoi de la prochaine proposition."
+  },
+  "pricing-p2": {
+    en:"The revised proposal should lay out the assumptions behind each package — what's included in the standard tier versus the Salesforce-integrated tier — so Acolad's team can compare it cleanly against Aircall within the renewal window.",
+    fr:"La proposition révisée devra détailler les hypothèses derrière chaque pack — ce qui est inclus dans le pack standard par rapport au pack intégré Salesforce — afin que l'équipe d'Acolad puisse la comparer proprement à Aircall dans la fenêtre de renouvellement."
+  },
+  "pstat1-label": {en:"Standard licences (proposed)", fr:"Licences standard (proposées)"},
+  "pstat2-label": {en:"Salesforce-integrated licences (proposed)", fr:"Licences intégrées Salesforce (proposées)"},
+  "pstat3-label": {en:"Total referenced in the broader thread", fr:"Total évoqué dans le fil de discussion élargi"},
+  "pstat4-label": {en:"Currently sized in the open opportunity — needs reconciliation", fr:"Dimensionnement actuel de l'opportunité ouverte — à réconcilier"},
+  "table-h3": {en:"Proposed licence split", fr:"Répartition de licences proposée"},
+  "table-note": {en:"Figures still to be priced", fr:"Chiffres encore à tarifer"},
+  "th1": {en:"Licence type", fr:"Type de licence"},
+  "th2": {en:"Quantity", fr:"Quantité"},
+  "th3": {en:"List price", fr:"Prix public"},
+  "th4": {en:"Your price", fr:"Votre prix"},
+  "th5": {en:"Notes", fr:"Notes"},
+  "row1-type": {en:"Standard licence", fr:"Licence standard"},
+  "row1-note": {en:"Core calling functionality", fr:"Fonctionnalités d'appel de base"},
+  "row2-type": {en:"Salesforce-integrated licence", fr:"Licence intégrée Salesforce"},
+  "row2-note": {en:"Includes native Salesforce CTI: contact, case, autofill", fr:"Inclut le CTI natif Salesforce : contact, case, autofill"},
+  "total-type": {en:"Total (broader thread)", fr:"Total (fil élargi)"},
+  "total-note": {en:"Reconcile against the 250-licence sizing on the open opportunity", fr:"À réconcilier avec le dimensionnement à 250 licences de l'opportunité ouverte"},
+  "blank": {en:"TBD", fr:"À déterminer"},
+  "next-h2": {en:"Next steps", fr:"Prochaines étapes"},
+  "next-p": {en:"What needs to happen, in order, to keep the deal moving.", fr:"Ce qui doit se passer, dans l'ordre, pour faire avancer le dossier."},
+  "next1-h4": {en:"Send the revised proposal", fr:"Envoyer la proposition révisée"},
+  "next1-p": {en:"Send a revised proposal with the 300 / 130 licence split and the assumptions behind each package.", fr:"Envoyer une proposition révisée avec la répartition 300 / 130 licences et les hypothèses derrière chaque pack."},
+  "next2-h4": {en:"Confirm the renewal safety net", fr:"Sécuriser le filet de renouvellement"},
+  "next2-p": {en:"Confirm contract end dates, renewal constraints, and the safest portability plan.", fr:"Confirmer les dates de fin de contrat, les contraintes de renouvellement, et le plan de portabilité le plus sûr."},
+  "next3-h4": {en:"Align the internal stakeholders", fr:"Aligner les parties prenantes internes"},
+  "next3-p": {en:"Loop in the right stakeholders from sales, ops, and IT to validate the decision path.", fr:"Impliquer les bons interlocuteurs côté sales, ops et IT pour valider le circuit de décision."},
+  "next4-h4": {en:"Book the workshop", fr:"Planifier l'atelier"},
+  "next4-p": {en:"Book a short workshop only after pricing and migration questions are fully answered.", fr:"Planifier un atelier court une fois seulement que les questions de tarification et de migration sont pleinement répondues."},
+  "foot-note": {en:"Account brief for Acolad — compiled from CRM activity and call review.", fr:"Dossier de compte Acolad — compilé à partir de l'activité CRM et de l'analyse des appels."},
+  "foot-date": {en:"Last updated September 3, 2026", fr:"Dernière mise à jour : 3 septembre 2026"}
+};
+
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const entry = I18N[el.dataset.i18n];
+    if(entry && entry[lang] !== undefined) el.innerHTML = entry[lang];
+  });
+  const nav = document.getElementById("sideNav");
+  if(nav) nav.setAttribute("aria-label", lang === "fr" ? "Navigation rapide" : "Quick navigation");
+  const toggle = document.getElementById("langToggle");
+  if(toggle){
+    toggle.textContent = lang === "fr" ? "EN" : "FR";
+    toggle.setAttribute("aria-label", lang === "fr" ? "Switch to English" : "Passer en français");
+  }
+  try{ localStorage.setItem("acolad-lang", lang); }catch(e){}
+}
+
+document.getElementById("langToggle").addEventListener("click", () => {
+  const current = document.documentElement.lang === "fr" ? "fr" : "en";
+  setLang(current === "fr" ? "en" : "fr");
+});
+
+(function initLang(){
+  let saved = null;
+  try{ saved = localStorage.getItem("acolad-lang"); }catch(e){}
+  if(saved === "fr") setLang("fr");
+})();
+
 /* ---------- side nav: scroll spy + smooth scroll ---------- */
 (function initSideNav(){
   const nav = document.querySelector(".side-nav");
