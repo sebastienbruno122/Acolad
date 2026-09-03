@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acolad × Ringover — Account brief</title>
+<meta name="description" content="Account brief tracking Acolad Group's controlled move off Aircall: pricing, licence sizing, number portability, and next steps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F6F8F9;
+    --panel: #FFFFFF;
+    --panel-border: #E4E9EC;
+    --ink: #0E1A22;
+    --ink-soft: #4B5B63;
+    --ink-faint: #8A98A0;
+    --teal: #27E2D7;
+    --teal-deep: #0E8F87;
+    --teal-ink: #06403D;
+    --teal-wash: #E8FBFA;
+    --ok: #1B9C57;
+    --ok-bg: #E4F7EC;
+    --warn: #C4790A;
+    --warn-bg: #FDF1DE;
+    --bad: #D7373F;
+    --bad-bg: #FBE6E7;
+    --dev: #3B5FCC;
+    --dev-bg: #E8ECFB;
+    --bg-zone-sc: #F4F9F8;
+    --bg-zone-com: #F9F8F5;
+    --bg-zone-deploy: #F5F7FA;
+    --bg-zone-pricing: #F8F7F6;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 2px rgba(14,26,34,.04), 0 8px 24px -12px rgba(14,26,34,.12);
+    --font-display: 'Space Grotesk', 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font-body); line-height:1.55; font-size:15.5px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--teal-deep);}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  @media (max-width:640px){ .wrap{padding:0 18px;} body{font-size:15px;} }
+
+  /* ---------- side nav ---------- */
+  .side-nav{
+    position:fixed; left:20px; top:50%; transform:translateY(-50%); z-index:50;
+    display:flex; flex-direction:column;
+  }
+  @media (max-width:980px){ .side-nav{display:none;} }
+  .side-nav-item{
+    display:flex; align-items:center; gap:11px;
+    padding:9px 4px; text-decoration:none; cursor:pointer; -webkit-tap-highlight-color:transparent;
+  }
+  .side-nav-item .tick{
+    width:13px; height:2px; border-radius:2px; flex:0 0 auto;
+    background:var(--ink-faint); opacity:.55;
+    transition:width .25s ease, background-color .25s ease, opacity .25s ease;
+  }
+  .side-nav-item .side-label{
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.03em; text-transform:uppercase;
+    white-space:nowrap; color:var(--ink-faint); opacity:.6;
+    transition:color .25s ease, opacity .25s ease;
+  }
+  .side-nav-item:hover .tick, .side-nav-item:focus-visible .tick, .side-nav-item.active .tick{
+    width:26px; background:var(--teal-deep); opacity:1;
+  }
+  .side-nav-item:hover .side-label, .side-nav-item:focus-visible .side-label, .side-nav-item.active .side-label{
+    color:var(--ink); opacity:1;
+  }
+  .side-nav-item.active .side-label{font-weight:600;}
+  .side-nav-item:focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:3px;}
+  .side-nav.on-dark .side-nav-item .tick{background:rgba(255,255,255,.4);}
+  .side-nav.on-dark .side-nav-item .side-label{color:rgba(232,241,244,.65);}
+  .side-nav.on-dark .side-nav-item:hover .tick,
+  .side-nav.on-dark .side-nav-item:focus-visible .tick,
+  .side-nav.on-dark .side-nav-item.active .tick{background:var(--teal);}
+  .side-nav.on-dark .side-nav-item:hover .side-label,
+  .side-nav.on-dark .side-nav-item:focus-visible .side-label,
+  .side-nav.on-dark .side-nav-item.active .side-label{color:#fff;}
+
+  @media (prefers-reduced-motion: reduce){
+    .side-nav-item .tick, .side-nav-item .side-label{transition:none;}
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:40;
+    background:rgba(246,248,249,.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-border);
+  }
+  .topbar-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:16px;}
+  .brand .dot{width:9px; height:9px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 4px var(--teal-wash);}
+  .brand .x{color:var(--ink-faint); font-weight:500; margin:0 2px;}
+  .sync-pill{
+    display:flex; align-items:center; gap:7px;
+    font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft);
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:99px;
+    padding:6px 12px 6px 10px;
+  }
+  .sync-pill .led{width:7px; height:7px; border-radius:50%; background:var(--ok); position:relative;}
+  .sync-pill .led::after{
+    content:''; position:absolute; inset:-4px; border-radius:50%;
+    border:1px solid var(--ok); opacity:.5; animation:ping 2.4s ease-out infinite;
+  }
+  @keyframes ping{ 0%{transform:scale(.6); opacity:.6;} 100%{transform:scale(1.9); opacity:0;} }
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 40px;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--teal-deep); background:var(--teal-wash); display:inline-block;
+    padding:5px 11px; border-radius:99px; margin-bottom:18px;
+  }
+  h1{
+    font-family:var(--font-display); font-size:clamp(30px,4.4vw,48px); line-height:1.08;
+    margin:0 0 18px; letter-spacing:-.01em; max-width:16ch;
+  }
+  .hero p.lede{font-size:17px; color:var(--ink-soft); max-width:60ch; margin:0 0 34px;}
+  .stat-strip{display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--panel-border); border:1px solid var(--panel-border); border-radius:var(--radius); overflow:hidden;}
+  @media (max-width:760px){ .stat-strip{grid-template-columns:repeat(2,1fr);} }
+  .stat-strip.pricing-summary{grid-template-columns:repeat(4,1fr);}
+  @media (max-width:760px){ .stat-strip.pricing-summary{grid-template-columns:repeat(2,1fr);} }
+  .stat{background:var(--panel); padding:22px 20px;}
+  .stat .num{font-family:var(--font-display); font-size:30px; font-weight:700; display:flex; align-items:baseline; gap:6px;}
+  .stat .num small{font-size:14px; color:var(--ink-faint); font-weight:500; font-family:var(--font-body);}
+  .stat .label{font-size:12.5px; color:var(--ink-soft); margin-top:4px;}
+  .stat.ok .num{color:var(--ok);}
+  .stat.warn .num{color:var(--warn);}
+  .stat.dev .num{color:var(--dev);}
+  .stat.bad .num{color:var(--bad);}
+
+  /* ---------- stat indicators: motion + cursor interaction (hero only) ---------- */
+  #heroStats .stat{
+    position:relative; overflow:hidden; cursor:pointer;
+    transition: filter .2s ease, opacity .2s ease;
+  }
+  #heroStats:hover .stat:not(:hover){
+    opacity:.6; filter:saturate(.55);
+  }
+  #heroStats .stat:hover{
+    filter:brightness(1.05) saturate(1.2);
+  }
+  #heroStats .stat::after{
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(100deg, transparent 20%, rgba(255,255,255,.6) 50%, transparent 80%);
+    background-size:220% 100%; background-position:150% 0; mix-blend-mode:soft-light;
+    animation:covShimmer 3.6s ease-in-out infinite;
+  }
+  #heroStats .stat:nth-child(1)::after{animation-delay:0s;}
+  #heroStats .stat:nth-child(2)::after{animation-delay:.3s;}
+  #heroStats .stat:nth-child(3)::after{animation-delay:.6s;}
+  #heroStats .stat:nth-child(4)::after{animation-delay:.9s;}
+  #heroStats .stat:nth-child(5)::after{animation-delay:1.2s;}
+  #heroStats .stat::before{
+    content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
+    opacity:0; transition:opacity .25s ease;
+    background:radial-gradient(140px circle at var(--sx,50%) var(--sy,50%), rgba(255,255,255,.65), transparent 70%);
+    mix-blend-mode:overlay;
+  }
+  #heroStats .stat:hover::before{opacity:1;}
+  @keyframes covShimmer{
+    0%{background-position:150% 0;}
+    55%{background-position:-60% 0;}
+    100%{background-position:-60% 0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    #heroStats .stat::after{animation:none;}
+  }
+
+  /* ---------- sections generic ---------- */
+  section{padding:56px 0;}
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:28px; flex-wrap:wrap;}
+  .section-head h2{font-family:var(--font-display); font-size:26px; margin:0 0 6px;}
+  .section-head p{margin:0; color:var(--ink-soft); max-width:56ch; font-size:14.5px;}
+
+  /* ---------- section background zones (subtle tint per group, for scroll orientation) ---------- */
+  #account-overview{background:var(--bg-zone-sc);}
+  #priority-needs{background:var(--bg-zone-com);}
+  #pricing{background:var(--bg-zone-pricing);}
+
+  /* ---------- suite (dark band) ---------- */
+  :root{
+    --airo: #7B7FF5;
+    --airo-deep: #5B5FEF;
+    --empower: #F0A93A;
+    --empower-deep: #C4790A;
+  }
+  .suite-band{
+    position:relative; overflow:hidden; isolation:isolate;
+    background:
+      radial-gradient(600px 320px at 12% -10%, rgba(39,226,215,.20), transparent 60%),
+      radial-gradient(560px 300px at 88% 10%, rgba(123,127,245,.20), transparent 60%),
+      radial-gradient(620px 340px at 55% 110%, rgba(240,169,58,.14), transparent 60%),
+      linear-gradient(180deg, #0A1620 0%, #0C1D26 100%);
+  }
+  .suite-band::before{
+    content:''; position:absolute; inset:0; z-index:-1; opacity:.5; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(circle at 50% 0%, #000 0%, transparent 75%);
+  }
+  .suite-blobs{position:absolute; inset:0; z-index:0; transition:transform .35s ease-out;}
+  .suite-blob{position:absolute; border-radius:50%; filter:blur(64px); pointer-events:none;}
+  .suite-blob.b1{width:340px; height:340px; opacity:.30; background:var(--teal); top:-90px; left:6%; animation:blobFloat1 17s ease-in-out infinite;}
+  .suite-blob.b2{width:300px; height:300px; opacity:.28; background:var(--airo); top:6%; right:4%; animation:blobFloat2 21s ease-in-out infinite;}
+  .suite-blob.b3{width:360px; height:360px; opacity:.22; background:var(--empower); bottom:-140px; left:36%; animation:blobFloat3 25s ease-in-out infinite;}
+  @keyframes blobFloat1{0%,100%{transform:translate(0,0);} 50%{transform:translate(46px,32px);}}
+  @keyframes blobFloat2{0%,100%{transform:translate(0,0);} 50%{transform:translate(-36px,42px);}}
+  @keyframes blobFloat3{0%,100%{transform:translate(0,0);} 50%{transform:translate(34px,-28px);}}
+  .suite-band .wrap{position:relative; z-index:1;}
+  .suite-band .section-head h2{color:#fff;}
+  .suite-band .section-head p{color:rgba(232,241,244,.68);}
+  .suite-group{margin-top:48px; padding-top:40px; border-top:1px solid rgba(255,255,255,.14);}
+  .suite-group:first-of-type{margin-top:32px; padding-top:0; border-top:none;}
+  .suite-subhead{font-family:var(--font-display); font-size:21px; margin:0 0 8px; color:#fff;}
+  .suite-subhead-intro{font-size:13.6px; color:rgba(232,241,244,.72); margin:0 0 24px; max-width:72ch; line-height:1.55;}
+  .suite-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:18px; perspective:1200px;}
+  @property --angle{ syntax:'<angle>'; inherits:false; initial-value:0deg; }
+  .suite-card{
+    --enter-y:28px; --enter-o:0; --hover-y:0px; --tilt-x:0deg; --tilt-y:0deg; --mx:50%; --my:50%; --spot-o:0; --angle:0deg;
+    position:relative; display:flex; flex-direction:column; gap:14px; transform-style:preserve-3d;
+    background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.10); border-radius:20px; padding:26px;
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    box-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 20px 40px -28px rgba(0,0,0,.6);
+    opacity:var(--enter-o);
+    transform:translateY(calc(var(--enter-y) + var(--hover-y))) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition:
+      opacity .7s cubic-bezier(.16,.8,.24,1) var(--d,0s),
+      transform .35s cubic-bezier(.16,.8,.24,1),
+      border-color .2s ease, box-shadow .2s ease;
+  }
+  .suite-card.in-view{--enter-y:0px; --enter-o:1;}
+  .suite-card::before{
+    content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:-1;
+    opacity:var(--spot-o); transition:opacity .3s ease;
+    background:radial-gradient(260px circle at var(--mx) var(--my), color-mix(in srgb, var(--accent) 40%, transparent), transparent 70%);
+  }
+  .suite-card::after{
+    content:''; position:absolute; inset:0; border-radius:inherit; padding:1px; pointer-events:none;
+    background:conic-gradient(from var(--angle), transparent 0%, var(--accent) 10%, transparent 22%, transparent 78%, var(--accent) 90%, transparent 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude; opacity:.7;
+    animation:spinBorder 6s linear infinite;
+  }
+  @keyframes spinBorder{ to{ --angle:360deg; } }
+  .suite-card:hover{
+    --hover-y:-6px; --spot-o:1;
+    border-color:rgba(255,255,255,.18);
+    box-shadow:0 1px 0 rgba(255,255,255,.08) inset, 0 26px 48px -24px var(--accent-shadow, rgba(0,0,0,.6));
+  }
+  .suite-card.ringover{--accent: var(--teal); --accent-shadow: rgba(39,226,215,.30);}
+  .suite-card.airo{--accent: var(--airo); --accent-shadow: rgba(123,127,245,.32);}
+  .suite-card.empower{--accent: var(--empower); --accent-shadow: rgba(240,169,58,.30);}
+  .suite-icon{
+    width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:16px; color:#0A1620;
+    background:linear-gradient(155deg, var(--accent) 0%, #fff 160%);
+    box-shadow:0 10px 24px -8px var(--accent-shadow, transparent);
+    animation:iconPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes iconPulse{
+    0%,100%{ box-shadow:0 10px 24px -8px var(--accent-shadow, transparent); }
+    50%{ box-shadow:0 12px 34px -4px var(--accent-shadow, transparent); }
+  }
+  .suite-tag{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    padding:4px 10px; border-radius:99px; font-weight:600; align-self:flex-start;
+    background:color-mix(in srgb, var(--accent) 20%, transparent); color:var(--accent);
+    border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .suite-card h3{margin:0; font-size:19px; font-family:var(--font-display); color:#fff;}
+  .suite-card p{margin:0; font-size:13.6px; color:rgba(232,241,244,.72);}
+  .suite-features{list-style:none; margin:2px 0 0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .suite-features li{display:flex; align-items:flex-start; gap:9px; font-size:13.2px; color:rgba(232,241,244,.86); line-height:1.4;}
+  .suite-features .tick{
+    flex:0 0 auto; width:17px; height:17px; margin-top:1px; border-radius:50%;
+    background:color-mix(in srgb, var(--accent) 22%, transparent); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-size:10.5px; font-weight:700;
+  }
+  .suite-refs{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:auto; padding-top:14px; border-top:1px solid rgba(255,255,255,.12);}
+  .suite-refs .ref-label{font-size:11.5px; color:rgba(232,241,244,.5); margin-right:2px;}
+  .ref-chip{
+    font-family:var(--font-mono); font-size:11.5px; padding:3px 9px; border-radius:99px;
+    border:1px solid var(--panel-border); background:var(--bg); color:var(--ink-soft);
+  }
+  .suite-band .ref-chip{background:rgba(255,255,255,.07); color:rgba(232,241,244,.85); border-color:rgba(255,255,255,.18);}
+
+  /* ---------- salesforce (reuses .suite-band / .suite-card design) ---------- */
+  :root{ --sf-blue: #00A1E0; --sf-blue-deep: #0071A9; }
+  .suite-card.salesforce{--accent: var(--sf-blue); --accent-shadow: rgba(0,161,224,.32);}
+
+  /* ---------- grid / table ---------- */
+  .table-panel{background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);}
+  .table-scroll{overflow-x:auto;}
+  table{width:100%; border-collapse:collapse; min-width:640px;}
+  thead th{
+    text-align:left; font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--ink-faint); padding:12px 16px; border-bottom:1px solid var(--panel-border); background:#FAFBFC;
+    white-space:nowrap;
+  }
+  tbody td{padding:13px 16px; border-bottom:1px solid var(--panel-border); font-size:13.6px; vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#FBFDFD;}
+  td.chapitre{color:var(--ink-soft); font-size:12.8px;}
+  .badge{
+    display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600;
+    padding:4px 10px; border-radius:99px; white-space:nowrap;
+  }
+  .badge .d{width:6px; height:6px; border-radius:50%;}
+  .badge.ok{background:var(--ok-bg); color:var(--ok);} .badge.ok .d{background:var(--ok);}
+  .badge.warn{background:var(--warn-bg); color:var(--warn);} .badge.warn .d{background:var(--warn);}
+  .badge.bad{background:var(--bad-bg); color:var(--bad);} .badge.bad .d{background:var(--bad);}
+  .badge.dev{background:var(--dev-bg); color:var(--dev);} .badge.dev .d{background:var(--dev);}
+  .count-note{font-size:12.5px; color:var(--ink-faint); margin-top:12px;}
+
+  /* ---------- pricing ---------- */
+  .blank-cell{
+    display:inline-block; min-width:70px; padding-bottom:2px; border-bottom:1px dashed var(--ink-faint);
+    color:var(--ink-faint); font-family:var(--font-mono); font-size:12.5px; font-style:italic;
+  }
+  .pricing-summary{margin-top:20px;}
+
+  .pricing-context{
+    background:var(--warn-bg); border:1px solid rgba(196,121,10,.25); border-radius:var(--radius);
+    padding:20px 24px; margin-top:20px; display:flex; flex-direction:column; gap:10px;
+  }
+  .pricing-context p{margin:0; font-size:13.4px; color:#6B4207; line-height:1.6;}
+  .pricing-context .lock-badge{
+    align-self:flex-start; font-family:var(--font-mono); font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+    background:var(--warn); color:#fff; padding:6px 12px; border-radius:99px;
+  }
+
+  .table-block{margin-top:32px;}
+  .table-block:first-of-type{margin-top:28px;}
+  .table-block-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:12px; flex-wrap:wrap;}
+  .table-block-head h3{font-family:var(--font-display); font-size:16.5px; margin:0;}
+  .table-block-head .table-note{font-size:12.5px; color:var(--ink-faint);}
+  tr.total-row-line td{background:var(--bg-zone-pricing); font-weight:700; color:var(--ink); border-top:2px solid var(--panel-border);}
+
+  /* ---------- account overview meta ---------- */
+  .phase-meta{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px;}
+  @media (max-width:760px){ .phase-meta{grid-template-columns:1fr;} }
+  .phase-meta-item{background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius-sm); padding:16px 18px;}
+  .phase-meta-item .k{font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); margin-bottom:6px;}
+  .phase-meta-item .v{font-size:13.6px; color:var(--ink); font-weight:600; line-height:1.45;}
+
+  /* ---------- cards (priority needs / next steps) ---------- */
+  .detail-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  @media (max-width:760px){ .detail-grid{grid-template-columns:1fr;} }
+  .detail-card{background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius); padding:20px; display:flex; gap:14px; box-shadow:var(--shadow);}
+  .detail-num{
+    flex:0 0 auto; width:32px; height:32px; border-radius:9px; background:var(--teal-wash); color:var(--teal-deep);
+    font-family:var(--font-display); font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center;
+  }
+  .detail-card h4{margin:0 0 8px; font-size:14.5px; font-family:var(--font-display);}
+  .detail-card p{margin:0; font-size:12.8px; color:var(--ink-soft); line-height:1.55;}
+  .need-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+  .need-head h4{margin:0;}
+  .need-evidence{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:12px; padding-top:12px; border-top:1px solid var(--panel-border);}
+  .need-evidence .ref-label{font-size:11.5px; color:var(--ink-faint); margin-right:2px;}
+
+  /* ---------- team (dark band, calmer cards) ---------- */
+  .person-grid{
+    display:grid; grid-template-columns:repeat(3, minmax(0,200px)); gap:20px;
+    justify-content:center; max-width:1120px; margin:0 auto;
+  }
+  @media (max-width:700px){ .person-grid{grid-template-columns:repeat(2, minmax(0,200px)); max-width:440px;} }
+  @media (max-width:480px){ .person-grid{grid-template-columns:minmax(0,220px); max-width:260px;} }
+  .person-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius);
+    padding:26px 20px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
+    transition:background-color .2s ease, border-color .2s ease;
+  }
+  .person-card:hover{background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.2);}
+  .person-card .avatar{
+    width:104px; height:104px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:28px; color:rgba(232,241,244,.85);
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+    overflow:hidden; margin-bottom:6px;
+  }
+  .person-card .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .person-card .suite-tag{background:rgba(255,255,255,.1); color:rgba(232,241,244,.85); border:1px solid rgba(255,255,255,.18); align-self:center;}
+  .person-card h3{color:#fff; margin:0; font-size:19px; font-family:var(--font-display);}
+  .person-card p{color:rgba(232,241,244,.72); margin:0; font-size:13.6px;}
+
+  footer{padding:36px 0 60px; border-top:1px solid var(--panel-border); margin-top:20px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;}
+  footer p{margin:0; font-size:12.5px; color:var(--ink-faint);}
+  footer .foot-brand{font-family:var(--font-display); font-weight:700; color:var(--ink-soft);}
+
+  ::selection{background:var(--teal); color:var(--teal-ink);}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .sync-pill .led::after{animation:none;}
+    .suite-blob{animation:none;}
+    .suite-blobs{transition:none;}
+    .suite-card{--enter-y:0px; --enter-o:1; transition:border-color .2s ease, box-shadow .2s ease;}
+    .suite-card::after{animation:none;}
+    .suite-icon{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand"><span class="dot"></span> Ringover <span class="x">×</span> Acolad</div>
+    <div class="sync-pill"><span class="led"></span><span>Stage: Discovering</span></div>
+  </div>
+</div>
+
+<nav class="side-nav" aria-label="Quick navigation">
+  <a class="side-nav-item active" href="#hero" data-target="hero"><span class="tick"></span><span class="side-label">Home</span></a>
+  <a class="side-nav-item" href="#team" data-target="team"><span class="tick"></span><span class="side-label">Team</span></a>
+  <a class="side-nav-item" href="#account-overview" data-target="account-overview"><span class="tick"></span><span class="side-label">Account overview</span></a>
+  <a class="side-nav-item" href="#priority-needs" data-target="priority-needs"><span class="tick"></span><span class="side-label">Priority needs</span></a>
+  <a class="side-nav-item" href="#solution-fit" data-target="solution-fit"><span class="tick"></span><span class="side-label">Solution fit</span></a>
+  <a class="side-nav-item" href="#pricing" data-target="pricing"><span class="tick"></span><span class="side-label">Licensing &amp; pricing</span></a>
+  <a class="side-nav-item" href="#next-steps" data-target="next-steps"><span class="tick"></span><span class="side-label">Next steps</span></a>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="wrap">
+    <span class="eyebrow">Account brief · Aircall replacement</span>
+    <h1>The Ringover file for Acolad</h1>
+    <p class="lede">
+      Acolad Group's active need is a controlled move off Aircall — with pricing, licence sizing, number portability,
+      and internal alignment still to settle. This page tracks what we know, what's still open, and the next steps
+      to move the deal forward.
+    </p>
+    <div class="stat-strip" id="heroStats">
+      <div class="stat"><div class="num">Discovering</div><div class="label">Deal stage</div></div>
+      <div class="stat"><div class="num">430</div><div class="label">Licences discussed (300 standard + 130 Salesforce)</div></div>
+      <div class="stat"><div class="num">15</div><div class="label">Calls reviewed</div></div>
+      <div class="stat"><div class="num">25</div><div class="label">Account activity rows reviewed</div></div>
+      <div class="stat bad"><div class="num">0</div><div class="label">Activities logged on the open opportunity</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="team" class="suite-band">
+  <div class="suite-blobs" aria-hidden="true">
+    <div class="suite-blob b1"></div>
+    <div class="suite-blob b2"></div>
+    <div class="suite-blob b3"></div>
+  </div>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>The Ringover team on Acolad</h2>
+        <p>The people involved on the Ringover side of the account.</p>
+      </div>
+    </div>
+    <div class="person-grid">
+      <div class="person-card">
+        <div class="avatar">JV</div>
+        <span class="suite-tag">Account Executive</span>
+        <h3>Josua Vischel</h3>
+        <p>Owns the account and the commercial relationship on the deal.</p>
+      </div>
+      <div class="person-card">
+        <div class="avatar">SB</div>
+        <span class="suite-tag">Lead Solution Engineer</span>
+        <h3>Sébastien Bruno</h3>
+        <p>Leads the functional and technical scoping of the Aircall replacement.</p>
+      </div>
+      <div class="person-card">
+        <div class="avatar">N</div>
+        <span class="suite-tag">Account Executive</span>
+        <h3>Narges</h3>
+        <p>Account Executive supporting the deal alongside Josua.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="account-overview">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Account</span>
+        <h2>Acolad group</h2>
+        <p>Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.</p>
+      </div>
+    </div>
+
+    <div class="phase-meta">
+      <div class="phase-meta-item">
+        <div class="k">Owner</div>
+        <div class="v">Josua Vischel</div>
+      </div>
+      <div class="phase-meta-item">
+        <div class="k">Location</div>
+        <div class="v">Boulogne-Billancourt, France</div>
+      </div>
+      <div class="phase-meta-item">
+        <div class="k">Open opportunity</div>
+        <div class="v">Sized at 250 licences <span style="color:var(--warn); font-weight:600;">— doesn't yet match the 300 / 130 (430 total) split referenced in the pricing thread</span></div>
+      </div>
+    </div>
+
+    <p class="count-note" style="margin-top:20px; font-size:13px;">
+      Evidence base: 15 calls and 25 account activity rows reviewed. The open opportunity itself currently has no
+      activities logged against it — worth closing as a CRM hygiene item alongside the commercial next steps below.
+    </p>
+  </div>
+</section>
+
+<section id="priority-needs">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Priority needs</h2>
+        <p>What Acolad needs resolved, ranked by priority, with the evidence behind each one.</p>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-num">1</div>
+        <div>
+          <div class="need-head">
+            <h4>Controlled transition off Aircall</h4>
+            <span class="badge bad"><span class="d"></span>High priority</span>
+          </div>
+          <p>They need a low-risk replacement plan that avoids service disruption and handles the renewal window cleanly.</p>
+          <div class="need-evidence">
+            <span class="ref-label">Evidence:</span>
+            <span class="ref-chip">Aircall transition &amp; renewal call · 2025-11-24</span>
+            <span class="ref-chip">Pricing / migration review · 2025-11-27</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-num">2</div>
+        <div>
+          <div class="need-head">
+            <h4>Clear pricing and packaging</h4>
+            <span class="badge bad"><span class="d"></span>High priority</span>
+          </div>
+          <p>They need a commercial proposal split around 300 standard licences and 130 Salesforce-integrated licences; the broader thread also references 430 licences total.</p>
+          <div class="need-evidence">
+            <span class="ref-label">Evidence:</span>
+            <span class="ref-chip">CRM activity notes · 2025-11-24</span>
+            <span class="ref-chip">Pricing / migration review · 2025-11-27</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-num">3</div>
+        <div>
+          <div class="need-head">
+            <h4>Number portability and multi-country rollout</h4>
+            <span class="badge bad"><span class="d"></span>High priority</span>
+          </div>
+          <p>They need confirmation on porting constraints and how numbers are handled across countries.</p>
+          <div class="need-evidence">
+            <span class="ref-label">Evidence:</span>
+            <span class="ref-chip">Transition planning · 2025-11-24</span>
+            <span class="ref-chip">CRM activity notes on porting &amp; country-specific addresses</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-num">4</div>
+        <div>
+          <div class="need-head">
+            <h4>Stakeholder alignment</h4>
+            <span class="badge warn"><span class="d"></span>Medium priority</span>
+          </div>
+          <p>The team needs the right internal owners looped in before the next decision step; Mathieu is not the sole owner of the topic.</p>
+          <div class="need-evidence">
+            <span class="ref-label">Evidence:</span>
+            <span class="ref-chip">Routing / handoff call · 2026-06-23</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-num">5</div>
+        <div>
+          <div class="need-head">
+            <h4>Demo / workshop validation</h4>
+            <span class="badge warn"><span class="d"></span>Medium priority</span>
+          </div>
+          <p>They want to prepare the demo around their key points and only proceed to a workshop if it fits the team.</p>
+          <div class="need-evidence">
+            <span class="ref-label">Evidence:</span>
+            <span class="ref-chip">CRM SMS activity · 2025-11-24 (demo prep &amp; workshop alignment)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solution-fit" class="suite-band">
+  <div class="suite-blobs" aria-hidden="true">
+    <div class="suite-blob b1"></div>
+    <div class="suite-blob b2"></div>
+    <div class="suite-blob b3"></div>
+  </div>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>How Ringover addresses it</h2>
+        <p>Mapping the three highest-priority needs to how Ringover is built to handle them.</p>
+      </div>
+    </div>
+    <div class="suite-group">
+      <div class="suite-grid">
+        <div class="suite-card ringover">
+          <div class="suite-icon">M</div>
+          <span class="suite-tag">Aircall replacement</span>
+          <h3>Controlled migration</h3>
+          <p>A staged cutover designed to avoid service disruption and land cleanly inside the Aircall renewal window.</p>
+          <ul class="suite-features">
+            <li><span class="tick">✓</span>Parallel run before final cutover, with a tested rollback plan</li>
+            <li><span class="tick">✓</span>Cutover timed to the current renewal / contract end dates</li>
+            <li><span class="tick">✓</span>Dedicated Technical Account Manager for the transition</li>
+          </ul>
+        </div>
+        <div class="suite-card airo">
+          <div class="suite-icon">P</div>
+          <span class="suite-tag">Multi-country</span>
+          <h3>Number portability</h3>
+          <p>End-to-end handling of the porting process across Acolad's countries and entities.</p>
+          <ul class="suite-features">
+            <li><span class="tick">✓</span>Porting documents (RIO, mandates) collected and processed for you</li>
+            <li><span class="tick">✓</span>Per-country number handling and address constraints clarified upfront</li>
+            <li><span class="tick">✓</span>No service interruption during the number switch-over</li>
+          </ul>
+        </div>
+        <div class="suite-card salesforce">
+          <div class="suite-icon">SF</div>
+          <span class="suite-tag">130 licences</span>
+          <h3>Native Salesforce integration</h3>
+          <p>For the Salesforce-integrated package: calls are logged without manual re-entry by the agent.</p>
+          <ul class="suite-features">
+            <li><span class="tick">✓</span>Automatic contact &amp; case creation on incoming/outgoing calls</li>
+            <li><span class="tick">✓</span>Autofill of CRM fields (duration, status, summary)</li>
+            <li><span class="tick">✓</span>Call summaries logged automatically to the record</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Licensing &amp; pricing</h2>
+        <p>The licence split under discussion, and what still needs to be settled before the next proposal.</p>
+      </div>
+    </div>
+
+    <div class="pricing-context">
+      <span class="lock-badge">Pricing not yet settled</span>
+      <p>The commercial thread references two overlapping numbers: a 300 standard + 130 Salesforce-integrated licence
+        split (430 total), and a 250-licence sizing on the open opportunity itself. These need to be reconciled
+        before the next proposal goes out.</p>
+      <p>The revised proposal should lay out the assumptions behind each package — what's included in the standard
+        tier versus the Salesforce-integrated tier — so Acolad's team can compare it cleanly against Aircall within
+        the renewal window.</p>
+    </div>
+
+    <div class="stat-strip pricing-summary">
+      <div class="stat"><div class="num">300</div><div class="label">Standard licences (proposed)</div></div>
+      <div class="stat"><div class="num">130</div><div class="label">Salesforce-integrated licences (proposed)</div></div>
+      <div class="stat"><div class="num">430</div><div class="label">Total referenced in the broader thread</div></div>
+      <div class="stat warn"><div class="num">250</div><div class="label">Currently sized in the open opportunity — needs reconciliation</div></div>
+    </div>
+
+    <div class="table-block">
+      <div class="table-block-head">
+        <h3>Proposed licence split</h3>
+        <span class="table-note">Figures still to be priced</span>
+      </div>
+      <div class="table-panel">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Licence type</th><th>Quantity</th><th>List price</th><th>Your price</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Standard licence</td>
+                <td>300</td>
+                <td><span class="blank-cell">TBD</span></td>
+                <td><span class="blank-cell">TBD</span></td>
+                <td class="chapitre">Core calling functionality</td>
+              </tr>
+              <tr>
+                <td>Salesforce-integrated licence</td>
+                <td>130</td>
+                <td><span class="blank-cell">TBD</span></td>
+                <td><span class="blank-cell">TBD</span></td>
+                <td class="chapitre">Includes native Salesforce CTI: contact, case, autofill</td>
+              </tr>
+              <tr class="total-row-line">
+                <td>Total (broader thread)</td>
+                <td>430</td>
+                <td></td>
+                <td></td>
+                <td class="chapitre">Reconcile against the 250-licence sizing on the open opportunity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="next-steps">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Next steps</h2>
+        <p>What needs to happen, in order, to keep the deal moving.</p>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-num">1</div>
+        <div>
+          <h4>Send the revised proposal</h4>
+          <p>Send a revised proposal with the 300 / 130 licence split and the assumptions behind each package.</p>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-num">2</div>
+        <div>
+          <h4>Confirm the renewal safety net</h4>
+          <p>Confirm contract end dates, renewal constraints, and the safest portability plan.</p>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-num">3</div>
+        <div>
+          <h4>Align the internal stakeholders</h4>
+          <p>Loop in the right stakeholders from sales, ops, and IT to validate the decision path.</p>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-num">4</div>
+        <div>
+          <h4>Book the workshop</h4>
+          <p>Book a short workshop only after pricing and migration questions are fully answered.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>
+      <p class="foot-brand">Ringover</p>
+      <p>Account brief for Acolad — compiled from CRM activity and call review.</p>
+    </div>
+    <p>Last updated September 3, 2026</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- side nav: scroll spy + smooth scroll ---------- */
+(function initSideNav(){
+  const nav = document.querySelector(".side-nav");
+  const navItems = Array.from(document.querySelectorAll(".side-nav-item"));
+  if(!navItems.length) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const DARK_SECTIONS = new Set(["team", "solution-fit"]);
+
+  function setActive(id){
+    navItems.forEach(item => item.classList.toggle("active", item.dataset.target === id));
+    nav.classList.toggle("on-dark", DARK_SECTIONS.has(id));
+  }
+
+  navItems.forEach(item => {
+    item.addEventListener("click", e => {
+      e.preventDefault();
+      const target = document.getElementById(item.dataset.target);
+      if(!target) return;
+      const topbar = document.querySelector(".topbar");
+      const offset = (topbar ? topbar.offsetHeight : 0) + 14;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({top: Math.max(y, 0), behavior: reduceMotion ? "auto" : "smooth"});
+      setActive(item.dataset.target);
+    });
+  });
+
+  const sections = navItems.map(item => document.getElementById(item.dataset.target)).filter(Boolean);
+
+  if("IntersectionObserver" in window && sections.length){
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, {rootMargin: "-45% 0px -45% 0px", threshold: 0});
+    sections.forEach(section => spy.observe(section));
+  }
+})();
+
+/* ---------- suite-style bands: scroll reveal + mouse-follow spotlight/tilt ---------- */
+(function initSuiteInteractions(){
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const bands = document.querySelectorAll(".suite-band");
+  const suiteCards = document.querySelectorAll(".suite-band .suite-card");
+
+  if(reduceMotion){
+    suiteCards.forEach(card => card.classList.add("in-view"));
+  } else if("IntersectionObserver" in window){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("in-view");
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.2});
+    bands.forEach(band => {
+      band.querySelectorAll(".suite-card").forEach((card, i) => {
+        card.style.setProperty("--d", (i * 0.12) + "s");
+        io.observe(card);
+      });
+    });
+  } else {
+    suiteCards.forEach(card => card.classList.add("in-view"));
+  }
+
+  if(!reduceMotion){
+    suiteCards.forEach(card => {
+      card.addEventListener("pointermove", e => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        card.style.setProperty("--mx", (px * 100) + "%");
+        card.style.setProperty("--my", (py * 100) + "%");
+        card.style.setProperty("--tilt-y", ((px - 0.5) * 6) + "deg");
+        card.style.setProperty("--tilt-x", ((0.5 - py) * 6) + "deg");
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.setProperty("--tilt-x", "0deg");
+        card.style.setProperty("--tilt-y", "0deg");
+      });
+    });
+
+    bands.forEach(band => {
+      const blobs = band.querySelector(".suite-blobs");
+      if(!blobs) return;
+      band.addEventListener("pointermove", e => {
+        const r = band.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        blobs.style.transform = `translate(${px * 30}px, ${py * 22}px)`;
+      });
+      band.addEventListener("pointerleave", () => {
+        blobs.style.transform = "translate(0,0)";
+      });
+    });
+  }
+})();
+
+/* ---------- hero stats: cursor-tracked spotlight ---------- */
+(function initStatFX(){
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduceMotion) return;
+  document.querySelectorAll("#heroStats .stat").forEach(tile => {
+    tile.addEventListener("pointermove", e => {
+      const r = tile.getBoundingClientRect();
+      const px = ((e.clientX - r.left) / r.width) * 100;
+      const py = ((e.clientY - r.top) / r.height) * 100;
+      tile.style.setProperty("--sx", px + "%");
+      tile.style.setProperty("--sy", py + "%");
+    });
+  });
+})();
+</script>
+</body>
+</html>
