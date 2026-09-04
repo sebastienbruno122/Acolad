@@ -192,7 +192,6 @@
   .section-head p{margin:0; color:var(--ink-soft); max-width:56ch; font-size:14.5px;}
 
   /* ---------- section background zones (subtle tint per group, for scroll orientation) ---------- */
-  #account-overview{background:var(--bg-zone-sc);}
   #priority-needs{background:var(--bg-zone-com);}
   #pricing{background:var(--bg-zone-pricing);}
 
@@ -496,7 +495,6 @@
   <a class="side-nav-item active" href="#hero" data-target="hero"><span class="tick"></span><span class="side-label" data-i18n="nav-home">Home</span></a>
   <a class="side-nav-item" href="#team" data-target="team"><span class="tick"></span><span class="side-label" data-i18n="nav-team">Team</span></a>
   <a class="side-nav-item" href="#ownership" data-target="ownership"><span class="tick"></span><span class="side-label" data-i18n="nav-ownership">Ownership</span></a>
-  <a class="side-nav-item" href="#account-overview" data-target="account-overview"><span class="tick"></span><span class="side-label" data-i18n="nav-account">Account overview</span></a>
   <a class="side-nav-item" href="#priority-needs" data-target="priority-needs"><span class="tick"></span><span class="side-label" data-i18n="nav-needs">Priority needs</span></a>
   <a class="side-nav-item" href="#requirements" data-target="requirements"><span class="tick"></span><span class="side-label" data-i18n="nav-requirements">Requirements</span></a>
   <a class="side-nav-item" href="#solution-fit" data-target="solution-fit"><span class="tick"></span><span class="side-label" data-i18n="nav-solution">Solution fit</span></a>
@@ -635,39 +633,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section id="account-overview">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow" data-i18n="acct-eyebrow">Account</span>
-        <h2 data-i18n="acct-h2">Acolad group</h2>
-        <p data-i18n="acct-p">Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.</p>
-      </div>
-    </div>
-
-    <div class="phase-meta">
-      <div class="phase-meta-item">
-        <div class="k" data-i18n="meta1-k">Current environment (Aircall)</div>
-        <div class="v" data-i18n="meta1-v">383 users · 582 numbers</div>
-      </div>
-      <div class="phase-meta-item">
-        <div class="k" data-i18n="meta2-k">Location</div>
-        <div class="v">Boulogne-Billancourt, France</div>
-      </div>
-      <div class="phase-meta-item">
-        <div class="k" data-i18n="meta3-k">Open opportunity</div>
-        <div class="v" data-i18n="meta3-v">Sized at 250 licences <span style="color:var(--warn); font-weight:600;">— doesn't yet match the 300 / 130 (430 total) split referenced in the pricing thread</span></div>
-      </div>
-    </div>
-
-    <p class="count-note" style="margin-top:20px; font-size:13px;" data-i18n="acct-note">
-      Evidence base: 15 calls and 25 account activity rows reviewed, plus the requirements list Acolad sent directly.
-      The open opportunity itself currently has no activities logged against it — worth closing as a CRM hygiene item
-      alongside the commercial next steps below. Ringover account owner: Josua Vischel (see Team, above).
-    </p>
   </div>
 </section>
 
@@ -1209,7 +1174,6 @@ const I18N = {
   "nav-home": {en:"Home", fr:"Accueil"},
   "nav-team": {en:"Team", fr:"Équipe"},
   "nav-ownership": {en:"Ownership", fr:"Répartition des rôles"},
-  "nav-account": {en:"Account overview", fr:"Aperçu du compte"},
   "nav-needs": {en:"Priority needs", fr:"Besoins prioritaires"},
   "nav-requirements": {en:"Requirements", fr:"Besoins exprimés"},
   "nav-solution": {en:"Solution fit", fr:"Réponse Ringover"},
@@ -1241,21 +1205,6 @@ const I18N = {
   "role-ae": {en:"Account Executive", fr:"Account Executive"},
   "role-csm": {en:"Customer Success Manager", fr:"Customer Success Manager"},
   "role-portability": {en:"Portability Lead", fr:"Responsable Portabilité"},
-  "acct-eyebrow": {en:"Account", fr:"Compte"},
-  "acct-h2": {en:"Acolad group", fr:"Groupe Acolad"},
-  "acct-p": {en:"Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.", fr:"Photographie de l'état du compte à date, sur la base des appels et de l'activité CRM analysés jusqu'ici."},
-  "meta1-k": {en:"Current environment (Aircall)", fr:"Environnement actuel (Aircall)"},
-  "meta1-v": {en:"383 users · 582 numbers", fr:"383 utilisateurs · 582 numéros"},
-  "meta2-k": {en:"Location", fr:"Localisation"},
-  "meta3-k": {en:"Open opportunity", fr:"Opportunité ouverte"},
-  "meta3-v": {
-    en:"Sized at 250 licences <span style=\"color:var(--warn); font-weight:600;\">— doesn't yet match the 300 / 130 (430 total) split referenced in the pricing thread</span>",
-    fr:"Dimensionnée à 250 licences <span style=\"color:var(--warn); font-weight:600;\">— ne correspond pas encore à la répartition 300 / 130 (430 au total) évoquée dans le fil tarifaire</span>"
-  },
-  "acct-note": {
-    en:"Evidence base: 15 calls and 25 account activity rows reviewed, plus the requirements list Acolad sent directly. The open opportunity itself currently has no activities logged against it — worth closing as a CRM hygiene item alongside the commercial next steps below. Ringover account owner: Josua Vischel (see Team, above).",
-    fr:"Base d'évidence : 15 appels et 25 lignes d'activité du compte analysés, ainsi que la liste de besoins transmise directement par Acolad. L'opportunité ouverte elle-même n'a actuellement aucune activité enregistrée — un point d'hygiène CRM à traiter en parallèle des prochaines étapes commerciales ci-dessous. Owner Ringover du compte : Josua Vischel (voir Équipe, ci-dessus)."
-  },
   "needs-h2": {en:"Priority needs", fr:"Besoins prioritaires"},
   "needs-p": {en:"What Acolad needs resolved, ranked by priority, with the evidence behind each one.", fr:"Ce qu'Acolad a besoin de voir résolu, classé par priorité, avec les éléments qui l'attestent."},
   "ev-label": {en:"Evidence:", fr:"Éléments :"},
