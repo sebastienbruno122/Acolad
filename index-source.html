@@ -382,11 +382,45 @@
 
   /* ---------- team (dark band, calmer cards) ---------- */
   .person-grid{
-    display:grid; grid-template-columns:repeat(3, minmax(0,200px)); gap:20px;
+    display:grid; grid-template-columns:repeat(4, minmax(0,200px)); gap:20px;
     justify-content:center; max-width:1120px; margin:0 auto;
   }
-  @media (max-width:700px){ .person-grid{grid-template-columns:repeat(2, minmax(0,200px)); max-width:440px;} }
+  @media (max-width:900px){ .person-grid{grid-template-columns:repeat(2, minmax(0,200px)); max-width:440px;} }
   @media (max-width:480px){ .person-grid{grid-template-columns:minmax(0,220px); max-width:260px;} }
+
+  /* ---------- deployment timeline (progress bar) ---------- */
+  .deploy-timeline{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:var(--radius);
+    padding:26px 28px; box-shadow:var(--shadow); margin-top:8px;
+  }
+  .deploy-timeline-head{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:18px;}
+  .deploy-timeline-head h3{margin:0; font-size:15.5px; font-family:var(--font-display);}
+  .dt-track{display:flex; position:relative; height:20px; gap:2px;}
+  .dt-seg{height:100%; border-radius:3px; transition:width .6s ease;}
+  .dt-scale{display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-faint); margin:10px 0 22px;}
+  .dt-groups{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  @media (max-width:760px){ .dt-groups{grid-template-columns:1fr;} }
+  .dt-group-title{font-family:var(--font-mono); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); margin-bottom:10px;}
+  .dt-legend{display:flex; flex-direction:column; gap:7px;}
+  .dt-item{display:flex; align-items:center; gap:9px; font-size:12.6px; color:var(--ink-soft);}
+  .dt-item b{margin-left:auto; font-family:var(--font-mono); font-size:11.2px; color:var(--ink); font-weight:600;}
+  .dt-swatch{width:10px; height:10px; border-radius:3px; flex:0 0 auto;}
+  @media (prefers-reduced-motion: reduce){ .dt-seg{transition:none;} }
+
+  /* ---------- infrastructure media ---------- */
+  .infra-media{margin-top:24px;}
+  .infra-media figure{margin:0;}
+  .infra-media img{width:100%; height:auto; display:block; border-radius:var(--radius);}
+  .infra-media figcaption{font-size:12px; color:rgba(232,241,244,.6); margin-top:10px; line-height:1.5;}
+  .infra-media.panel-white img{background:#fff; padding:10px; border:1px solid rgba(255,255,255,.12);}
+  .infra-cert-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+  .infra-list{list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .infra-list li{display:flex; align-items:flex-start; gap:10px; font-size:13.4px; color:rgba(232,241,244,.82); line-height:1.5;}
+  .infra-list .tick{
+    flex:0 0 auto; width:18px; height:18px; margin-top:1px; border-radius:50%;
+    background:color-mix(in srgb, var(--teal) 22%, transparent); color:var(--teal);
+    display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700;
+  }
   .person-card{
     background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius);
     padding:26px 20px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
@@ -440,6 +474,7 @@
   <a class="side-nav-item" href="#priority-needs" data-target="priority-needs"><span class="tick"></span><span class="side-label" data-i18n="nav-needs">Priority needs</span></a>
   <a class="side-nav-item" href="#requirements" data-target="requirements"><span class="tick"></span><span class="side-label" data-i18n="nav-requirements">Requirements</span></a>
   <a class="side-nav-item" href="#solution-fit" data-target="solution-fit"><span class="tick"></span><span class="side-label" data-i18n="nav-solution">Solution fit</span></a>
+  <a class="side-nav-item" href="#deployment" data-target="deployment"><span class="tick"></span><span class="side-label" data-i18n="nav-deploy">Deployment timeline</span></a>
   <a class="side-nav-item" href="#infrastructure" data-target="infrastructure"><span class="tick"></span><span class="side-label" data-i18n="nav-infra">Infrastructure &amp; support</span></a>
   <a class="side-nav-item" href="#pricing" data-target="pricing"><span class="tick"></span><span class="side-label" data-i18n="nav-pricing">Licensing &amp; pricing</span></a>
   <a class="side-nav-item" href="#next-steps" data-target="next-steps"><span class="tick"></span><span class="side-label" data-i18n="nav-next">Next steps</span></a>
@@ -495,6 +530,12 @@
         <span class="suite-tag">Account Executive</span>
         <h3>Narjess Gmir</h3>
         <p data-i18n="person3-desc">Account Executive supporting the deal alongside Josua.</p>
+      </div>
+      <div class="person-card">
+        <div class="avatar"><img src="photo-sybille.jpeg" alt="Sybille Canneau" loading="lazy"></div>
+        <span class="suite-tag" data-i18n="person4-tag">Portability Lead</span>
+        <h3>Sybille Canneau</h3>
+        <p data-i18n="person4-desc">Leads Ringover's portability team: document collection and the number switch-over — directly relevant to Acolad's multi-country rollout.</p>
       </div>
     </div>
   </div>
@@ -791,7 +832,65 @@
   </div>
 </section>
 
-<section id="infrastructure">
+<section id="deployment">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="deploy-h2">Proposed onboarding timeline</h2>
+        <p data-i18n="deploy-p">An illustrative sequence based on Ringover's standard onboarding methodology — exact hours will be scoped once the licence count and portability plan are confirmed.</p>
+      </div>
+    </div>
+
+    <div class="deploy-timeline" role="img" aria-label="Illustrative onboarding sequence, kick-off through end of onboarding">
+      <div class="deploy-timeline-head">
+        <h3 data-i18n="deploy-track-h3">Onboarding sequence</h3>
+        <span class="table-note" data-i18n="deploy-track-note">Relative weight shown — not final hours</span>
+      </div>
+      <div class="dt-track">
+        <div class="dt-seg" style="width:5%; background:#8FF0EA" title="Kick-off"></div>
+        <div class="dt-seg" style="width:25%; background:#76D0CB" title="Administrator setup"></div>
+        <div class="dt-seg" style="width:10%; background:#5DB0AB" title="Optimization"></div>
+        <div class="dt-seg" style="width:20%; background:#44908C" title="User rollout"></div>
+        <div class="dt-seg" style="width:15%; background:#27E2D7" title="Portability (numbers)"></div>
+        <div class="dt-seg" style="width:15%; background:#0E8F87" title="Supervisor training"></div>
+        <div class="dt-seg" style="width:5%; background:#06403D" title="Q&amp;A"></div>
+        <div class="dt-seg" style="width:5%; background:#0A2C29" title="End of onboarding"></div>
+      </div>
+      <div class="dt-scale">
+        <span data-i18n="deploy-scale-start">Kick-off</span>
+        <span data-i18n="deploy-scale-end">End of onboarding</span>
+      </div>
+      <div class="dt-groups">
+        <div>
+          <div class="dt-group-title" data-i18n="deploy-group1">Setup &amp; configuration</div>
+          <div class="dt-legend">
+            <span class="dt-item"><span class="dt-swatch" style="background:#8FF0EA"></span><span data-i18n="deploy-item1">Kick-off</span></span>
+            <span class="dt-item"><span class="dt-swatch" style="background:#76D0CB"></span><span data-i18n="deploy-item2">Administrator setup</span></span>
+            <span class="dt-item"><span class="dt-swatch" style="background:#5DB0AB"></span><span data-i18n="deploy-item3">Optimization</span></span>
+            <span class="dt-item"><span class="dt-swatch" style="background:#27E2D7"></span><span data-i18n="deploy-item5">Portability (numbers)</span></span>
+          </div>
+        </div>
+        <div>
+          <div class="dt-group-title" data-i18n="deploy-group2">Rollout &amp; training</div>
+          <div class="dt-legend">
+            <span class="dt-item"><span class="dt-swatch" style="background:#44908C"></span><span data-i18n="deploy-item4">User rollout</span></span>
+            <span class="dt-item"><span class="dt-swatch" style="background:#0E8F87"></span><span data-i18n="deploy-item6">Supervisor training</span></span>
+            <span class="dt-item"><span class="dt-swatch" style="background:#06403D"></span><span data-i18n="deploy-item7">Q&amp;A</span></span>
+            <span class="dt-item"><span class="dt-swatch" style="background:#0A2C29"></span><span data-i18n="deploy-item8">End of onboarding</span></span>
+          </div>
+        </div>
+      </div>
+      <p class="count-note" data-i18n="deploy-note">Portability is weighted higher than in a typical single-country rollout, given Acolad's 582 numbers across multiple countries.</p>
+    </div>
+  </div>
+</section>
+
+<section id="infrastructure" class="suite-band">
+  <div class="suite-blobs" aria-hidden="true">
+    <div class="suite-blob b1"></div>
+    <div class="suite-blob b2"></div>
+    <div class="suite-blob b3"></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -803,7 +902,7 @@
     <div class="phase-meta">
       <div class="phase-meta-item">
         <div class="k" data-i18n="infra1-k">Datacenters</div>
-        <div class="v" data-i18n="infra1-v">EU-based, redundant infrastructure <span class="blank-cell">TBD — exact locations &amp; certifications</span></div>
+        <div class="v" data-i18n="infra1-v">16 sites across France, the US, UK, Spain, Colombia, South Africa, Singapore &amp; Australia — ISO 27001 certified at minimum</div>
       </div>
       <div class="phase-meta-item">
         <div class="k" data-i18n="infra2-k">Uptime SLA</div>
@@ -815,10 +914,66 @@
       </div>
     </div>
 
-    <p class="count-note" style="margin-top:20px; font-size:13px;" data-i18n="infra-note">
-      Data protection (GDPR) and hosting are standard parts of every Ringover deployment; the specific SLA
-      percentage, datacenter certifications, and support-tier response times above will be confirmed with the
-      account team and filled in before the next proposal.
+    <div class="suite-group">
+      <h3 class="suite-subhead" data-i18n="infra-sec1-h3">Global datacenter footprint</h3>
+      <p class="suite-subhead-intro" data-i18n="infra-sec1-p">Points of presence across Europe, the Americas, Africa and Asia-Pacific — relevant to Acolad's multi-country rollout.</p>
+      <div class="infra-media">
+        <figure>
+          <img src="infra-datacenter-map.png" alt="Map of Ringover datacenter and point-of-presence locations worldwide" loading="lazy">
+          <figcaption data-i18n="infra-map-caption">France (Paris, Ivry-sur-Seine, Saint-Denis), USA (San Jose, Miami, Dallas, New York, Atlanta, Chicago), UK (London), Spain (Madrid), Colombia (Bogota), South Africa (Johannesburg), Singapore, Australia (Sydney).</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="suite-group">
+      <h3 class="suite-subhead" data-i18n="infra-sec2-h3">Certifications</h3>
+      <p class="suite-subhead-intro" data-i18n="infra-sec2-p">Every site carries ISO 27001 (information security) at minimum; the primary EU and US sites add ISO 9001, 22301, 45001, PCI DSS and SOC 2.</p>
+      <div class="infra-cert-chips">
+        <span class="ref-chip">ISO 27001</span>
+        <span class="ref-chip">ISO 9001</span>
+        <span class="ref-chip">ISO 50001</span>
+        <span class="ref-chip">ISO 14001</span>
+        <span class="ref-chip">ISO 22301</span>
+        <span class="ref-chip">ISO 45001</span>
+        <span class="ref-chip">PCI DSS</span>
+        <span class="ref-chip">AICPA SOC / SOC 2</span>
+        <span class="ref-chip">Tier III Design (Uptime Institute)</span>
+      </div>
+      <div class="infra-media panel-white">
+        <figure>
+          <img src="infra-certifications.png" alt="Certification matrix across Ringover's 16 datacenters" loading="lazy">
+          <figcaption data-i18n="infra-cert-caption">Full certification matrix by datacenter, on request.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="suite-group">
+      <h3 class="suite-subhead" data-i18n="infra-sec3-h3">Network &amp; security architecture</h3>
+      <p class="suite-subhead-intro" data-i18n="infra-sec3-p">Redundant points of presence, firewalling and load balancing in front of every cluster.</p>
+      <div class="infra-media">
+        <figure>
+          <img src="infra-trust-zone.png" alt="Ringover Trust Zone network architecture diagram" loading="lazy">
+          <figcaption data-i18n="infra-trust-caption">Internet transits and telecom operators feed redundant points of presence (firewall + router), load-balanced into API, VoIP, AI and web server clusters.</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="suite-group">
+      <h3 class="suite-subhead" data-i18n="infra-sec4-h3">Application &amp; data security</h3>
+      <ul class="infra-list">
+        <li><span class="tick">✓</span><span data-i18n="infra-sec-li1">Single Sign-On: OIDC &amp; SAML, tested with major identity providers (Google, Microsoft, and others)</span></li>
+        <li><span class="tick">✓</span><span data-i18n="infra-sec-li2">Strong password policy, with two-factor authentication available</span></li>
+        <li><span class="tick">✓</span><span data-i18n="infra-sec-li3">Hardware-based encryption at rest (AES-256) for contacts and conversations</span></li>
+        <li><span class="tick">✓</span><span data-i18n="infra-sec-li4">Encrypted backups — encryption keys are never shared with third parties</span></li>
+        <li><span class="tick">✓</span><span data-i18n="infra-sec-li5">Dedicated in-house SOC (Security Operations Center) team</span></li>
+        <li><span class="tick">✓</span><span data-i18n="infra-sec-li6">External penetration tests twice a year — executive summary available on request</span></li>
+      </ul>
+    </div>
+
+    <p class="count-note" style="margin-top:24px; font-size:13px; color:rgba(232,241,244,.55);" data-i18n="infra-note">
+      Datacenters, certifications and security posture above are Ringover's standard infrastructure, shared across all
+      customers. The specific uptime SLA percentage and support-tier response times for Acolad will be confirmed with
+      the account team and filled in before the next proposal.
     </p>
   </div>
 </section>
@@ -960,6 +1115,7 @@ const I18N = {
   "nav-needs": {en:"Priority needs", fr:"Besoins prioritaires"},
   "nav-requirements": {en:"Requirements", fr:"Besoins exprimés"},
   "nav-solution": {en:"Solution fit", fr:"Réponse Ringover"},
+  "nav-deploy": {en:"Deployment timeline", fr:"Chronologie de déploiement"},
   "nav-infra": {en:"Infrastructure &amp; support", fr:"Infrastructure &amp; support"},
   "nav-pricing": {en:"Licensing &amp; pricing", fr:"Licences &amp; tarification"},
   "nav-next": {en:"Next steps", fr:"Prochaines étapes"},
@@ -980,6 +1136,8 @@ const I18N = {
   "person1-desc": {en:"Owns the account and the commercial relationship on the deal.", fr:"Porte le compte et la relation commerciale sur ce dossier."},
   "person2-desc": {en:"Leads the functional and technical scoping of the Aircall replacement.", fr:"Pilote le cadrage fonctionnel et technique du remplacement d'Aircall."},
   "person3-desc": {en:"Account Executive supporting the deal alongside Josua.", fr:"Account Executive en soutien sur le dossier, aux côtés de Josua."},
+  "person4-tag": {en:"Portability Lead", fr:"Responsable Portabilité"},
+  "person4-desc": {en:"Leads Ringover's portability team: document collection and the number switch-over — directly relevant to Acolad's multi-country rollout.", fr:"Pilote l'équipe portabilité de Ringover : récupération des documents et bascule des numéros — un point clé pour le déploiement multi-pays d'Acolad."},
   "acct-eyebrow": {en:"Account", fr:"Compte"},
   "acct-h2": {en:"Acolad group", fr:"Groupe Acolad"},
   "acct-p": {en:"Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.", fr:"Photographie de l'état du compte à date, sur la base des appels et de l'activité CRM analysés jusqu'ici."},
@@ -1075,17 +1233,50 @@ const I18N = {
   "card3-li1": {en:"Automatic contact &amp; case creation on incoming/outgoing calls", fr:"Création automatique de contact &amp; case sur les appels entrants/sortants"},
   "card3-li2": {en:"Autofill of CRM fields (duration, status, summary)", fr:"Remplissage automatique des champs CRM (durée, statut, résumé)"},
   "card3-li3": {en:"Call summaries logged automatically to the record", fr:"Comptes rendus d'appel consignés automatiquement sur la fiche"},
+  "deploy-h2": {en:"Proposed onboarding timeline", fr:"Chronologie de déploiement proposée"},
+  "deploy-p": {en:"An illustrative sequence based on Ringover's standard onboarding methodology — exact hours will be scoped once the licence count and portability plan are confirmed.", fr:"Une séquence illustrative basée sur la méthodologie standard d'onboarding de Ringover — les heures exactes seront cadrées une fois le nombre de licences et le plan de portabilité confirmés."},
+  "deploy-track-h3": {en:"Onboarding sequence", fr:"Séquence d'onboarding"},
+  "deploy-track-note": {en:"Relative weight shown — not final hours", fr:"Poids relatif affiché — pas des heures définitives"},
+  "deploy-scale-start": {en:"Kick-off", fr:"Kick-off"},
+  "deploy-scale-end": {en:"End of onboarding", fr:"Fin d'onboarding"},
+  "deploy-group1": {en:"Setup &amp; configuration", fr:"Mise en place &amp; configuration"},
+  "deploy-group2": {en:"Rollout &amp; training", fr:"Déploiement &amp; formation"},
+  "deploy-item1": {en:"Kick-off", fr:"Kick-off"},
+  "deploy-item2": {en:"Administrator setup", fr:"Configuration administrateur"},
+  "deploy-item3": {en:"Optimization", fr:"Optimisation"},
+  "deploy-item4": {en:"User rollout", fr:"Déploiement utilisateurs"},
+  "deploy-item5": {en:"Portability (numbers)", fr:"Portabilité (numéros)"},
+  "deploy-item6": {en:"Supervisor training", fr:"Formation superviseurs"},
+  "deploy-item7": {en:"Q&amp;A", fr:"Q&amp;R"},
+  "deploy-item8": {en:"End of onboarding", fr:"Fin d'onboarding"},
+  "deploy-note": {en:"Portability is weighted higher than in a typical single-country rollout, given Acolad's 582 numbers across multiple countries.", fr:"La portabilité pèse plus que dans un déploiement mono-pays classique, compte tenu des 582 numéros d'Acolad répartis sur plusieurs pays."},
   "infra-h2": {en:"Infrastructure, SLA &amp; support", fr:"Infrastructure, SLA &amp; support"},
   "infra-p": {en:"What sits behind the product: where data lives, what's guaranteed, and how you're supported after go-live.", fr:"Ce qu'il y a derrière le produit : où vivent les données, ce qui est garanti, et comment vous êtes accompagné après le go-live."},
   "infra1-k": {en:"Datacenters", fr:"Datacenters"},
-  "infra1-v": {en:"EU-based, redundant infrastructure <span class=\"blank-cell\">TBD — exact locations &amp; certifications</span>", fr:"Infrastructure redondante basée dans l'UE <span class=\"blank-cell\">À déterminer — localisations &amp; certifications exactes</span>"},
+  "infra1-v": {en:"16 sites across France, the US, UK, Spain, Colombia, South Africa, Singapore &amp; Australia — ISO 27001 certified at minimum", fr:"16 sites répartis entre la France, les États-Unis, le Royaume-Uni, l'Espagne, la Colombie, l'Afrique du Sud, Singapour &amp; l'Australie — certifiés ISO 27001 au minimum"},
   "infra2-k": {en:"Uptime SLA", fr:"SLA de disponibilité"},
   "infra2-v": {en:"TBD — % to confirm", fr:"À déterminer — % à confirmer"},
   "infra3-k": {en:"Support &amp; CSM", fr:"Support &amp; CSM"},
   "infra3-v": {en:"Dedicated CSM from onboarding onward <span class=\"blank-cell\">TBD — support tiers &amp; response times</span>", fr:"CSM dédié dès l'onboarding <span class=\"blank-cell\">À déterminer — niveaux de support &amp; délais de réponse</span>"},
+  "infra-sec1-h3": {en:"Global datacenter footprint", fr:"Empreinte mondiale des datacenters"},
+  "infra-sec1-p": {en:"Points of presence across Europe, the Americas, Africa and Asia-Pacific — relevant to Acolad's multi-country rollout.", fr:"Points de présence en Europe, Amériques, Afrique et Asie-Pacifique — pertinent pour le déploiement multi-pays d'Acolad."},
+  "infra-map-caption": {en:"France (Paris, Ivry-sur-Seine, Saint-Denis), USA (San Jose, Miami, Dallas, New York, Atlanta, Chicago), UK (London), Spain (Madrid), Colombia (Bogota), South Africa (Johannesburg), Singapore, Australia (Sydney).", fr:"France (Paris, Ivry-sur-Seine, Saint-Denis), États-Unis (San Jose, Miami, Dallas, New York, Atlanta, Chicago), Royaume-Uni (Londres), Espagne (Madrid), Colombie (Bogota), Afrique du Sud (Johannesburg), Singapour, Australie (Sydney)."},
+  "infra-sec2-h3": {en:"Certifications", fr:"Certifications"},
+  "infra-sec2-p": {en:"Every site carries ISO 27001 (information security) at minimum; the primary EU and US sites add ISO 9001, 22301, 45001, PCI DSS and SOC 2.", fr:"Chaque site est certifié ISO 27001 (sécurité de l'information) au minimum ; les principaux sites UE et US ajoutent ISO 9001, 22301, 45001, PCI DSS et SOC 2."},
+  "infra-cert-caption": {en:"Full certification matrix by datacenter, on request.", fr:"Matrice complète des certifications par datacenter, sur demande."},
+  "infra-sec3-h3": {en:"Network &amp; security architecture", fr:"Architecture réseau &amp; sécurité"},
+  "infra-sec3-p": {en:"Redundant points of presence, firewalling and load balancing in front of every cluster.", fr:"Points de présence redondants, pare-feu et répartition de charge devant chaque cluster."},
+  "infra-trust-caption": {en:"Internet transits and telecom operators feed redundant points of presence (firewall + router), load-balanced into API, VoIP, AI and web server clusters.", fr:"Les transits Internet et opérateurs télécom alimentent des points de présence redondants (pare-feu + routeur), répartis en charge vers les clusters API, VoIP, IA et serveurs web."},
+  "infra-sec4-h3": {en:"Application &amp; data security", fr:"Sécurité applicative &amp; des données"},
+  "infra-sec-li1": {en:"Single Sign-On: OIDC &amp; SAML, tested with major identity providers (Google, Microsoft, and others)", fr:"Authentification unique (SSO) : OIDC &amp; SAML, testé avec les principaux fournisseurs d'identité (Google, Microsoft, entre autres)"},
+  "infra-sec-li2": {en:"Strong password policy, with two-factor authentication available", fr:"Politique de mot de passe stricte, avec authentification à deux facteurs disponible"},
+  "infra-sec-li3": {en:"Hardware-based encryption at rest (AES-256) for contacts and conversations", fr:"Chiffrement matériel au repos (AES-256) pour les contacts et conversations"},
+  "infra-sec-li4": {en:"Encrypted backups — encryption keys are never shared with third parties", fr:"Sauvegardes chiffrées — les clés de chiffrement ne sont jamais partagées avec des tiers"},
+  "infra-sec-li5": {en:"Dedicated in-house SOC (Security Operations Center) team", fr:"Équipe SOC (Security Operations Center) interne dédiée"},
+  "infra-sec-li6": {en:"External penetration tests twice a year — executive summary available on request", fr:"Tests d'intrusion externes deux fois par an — synthèse disponible sur demande"},
   "infra-note": {
-    en:"Data protection (GDPR) and hosting are standard parts of every Ringover deployment; the specific SLA percentage, datacenter certifications, and support-tier response times above will be confirmed with the account team and filled in before the next proposal.",
-    fr:"La protection des données (RGPD) et l'hébergement font partie du socle standard de tout déploiement Ringover ; le pourcentage de SLA, les certifications des datacenters et les délais de réponse par niveau de support ci-dessus seront confirmés avec l'équipe commerciale et complétés avant la prochaine proposition."
+    en:"Datacenters, certifications and security posture above are Ringover's standard infrastructure, shared across all customers. The specific uptime SLA percentage and support-tier response times for Acolad will be confirmed with the account team and filled in before the next proposal.",
+    fr:"Les datacenters, certifications et dispositif de sécurité ci-dessus sont l'infrastructure standard de Ringover, commune à tous les clients. Le pourcentage de SLA de disponibilité et les délais de réponse par niveau de support spécifiques à Acolad seront confirmés avec l'équipe commerciale et complétés avant la prochaine proposition."
   },
   "pricing-h2": {en:"Licensing &amp; pricing", fr:"Licences &amp; tarification"},
   "pricing-p": {en:"The licence split under discussion, and what still needs to be settled before the next proposal.", fr:"La répartition des licences en discussion, et ce qu'il reste à trancher avant la prochaine proposition."},
@@ -1165,7 +1356,7 @@ document.getElementById("langToggle").addEventListener("click", () => {
   const navItems = Array.from(document.querySelectorAll(".side-nav-item"));
   if(!navItems.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const DARK_SECTIONS = new Set(["team", "solution-fit"]);
+  const DARK_SECTIONS = new Set(["team", "solution-fit", "infrastructure"]);
 
   function setActive(id){
     navItems.forEach(item => item.classList.toggle("active", item.dataset.target === id));
