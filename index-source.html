@@ -47,7 +47,7 @@
     -webkit-font-smoothing:antialiased;
   }
   a{color:var(--teal-deep);}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
   @media (max-width:640px){ .wrap{padding:0 18px;} body{font-size:15px;} }
 
   /* ---------- top nav (sticky, horizontal) ---------- */
@@ -107,7 +107,7 @@
   .lang-toggle:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
 
   /* ---------- hero ---------- */
-  .hero{padding:64px 0 40px;}
+  .hero{padding:64px 0 40px; position:relative; overflow:hidden;}
   .eyebrow{
     font-family:var(--font-mono); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
     color:var(--teal-deep); background:var(--teal-wash); display:inline-block;
@@ -178,6 +178,55 @@
   /* ---------- section background zones (subtle tint per group, for scroll orientation) ---------- */
   #priority-needs{background:var(--bg-zone-com);}
   #pricing{background:var(--bg-zone-pricing);}
+
+  /* ---------- background Ringover logos (floating watermark, light sections only) ---------- */
+  #ownership, #priority-needs, #requirements, #deployment, #sla, #pricing, #next-steps{
+    position:relative; overflow:hidden;
+  }
+  .bg-logos{position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;}
+  .bg-logo{position:absolute; mix-blend-mode:multiply; will-change:transform;}
+  .bg-logo-float{width:100%; height:100%;}
+  .bg-logo img{display:block; width:100%; height:100%; object-fit:contain;}
+  .bg-logo.l1 .bg-logo-float{animation:bgLogoFloat1 26s ease-in-out infinite;}
+  .bg-logo.l2 .bg-logo-float{animation:bgLogoFloat2 21s ease-in-out infinite;}
+  .bg-logo.l3 .bg-logo-float{animation:bgLogoFloat3 32s ease-in-out infinite;}
+  .bg-logo.l4 .bg-logo-float{animation:bgLogoFloat2 18s ease-in-out infinite reverse;}
+  .bg-logo.l5 .bg-logo-float{animation:bgLogoFloat1 24s ease-in-out infinite reverse;}
+  .bg-logo.l6 .bg-logo-float{animation:bgLogoFloat3 20s ease-in-out infinite;}
+  @keyframes bgLogoFloat1{0%,100%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(16px,14px) rotate(6deg);}}
+  @keyframes bgLogoFloat2{0%,100%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(-14px,18px) rotate(-5deg);}}
+  @keyframes bgLogoFloat3{0%,100%{transform:translate(0,0) rotate(0deg);} 50%{transform:translate(12px,-16px) rotate(4deg);}}
+  @media (prefers-reduced-motion: reduce){ .bg-logo-float{animation:none;} .bg-logo{transition:none;} }
+
+  #hero .bg-logo.l1{width:150px; height:150px; top:-30px; left:4%; opacity:.28;}
+  #hero .bg-logo.l2{width:95px; height:95px; top:30px; right:8%; opacity:.24;}
+  #hero .bg-logo.l3{width:190px; height:190px; bottom:-70px; left:36%; opacity:.18;}
+  #hero .bg-logo.l4{width:78px; height:78px; top:170px; left:18%; opacity:.26;}
+  #hero .bg-logo.l5{width:130px; height:130px; bottom:-10px; right:16%; opacity:.24;}
+  #hero .bg-logo.l6{width:68px; height:68px; top:60px; right:34%; opacity:.20;}
+
+  #ownership .bg-logo.l1{width:120px; height:120px; top:-20px; right:6%; opacity:.20;}
+  #ownership .bg-logo.l2{width:80px; height:80px; bottom:-10px; left:8%; opacity:.24;}
+
+  #priority-needs .bg-logo.l1{width:130px; height:130px; top:-10px; left:4%; opacity:.18;}
+  #priority-needs .bg-logo.l2{width:85px; height:85px; bottom:0; right:10%; opacity:.24;}
+  #priority-needs .bg-logo.l3{width:60px; height:60px; top:44%; right:38%; opacity:.16;}
+
+  #requirements .bg-logo.l1{width:140px; height:140px; top:0; right:4%; opacity:.18;}
+  #requirements .bg-logo.l2{width:90px; height:90px; bottom:-20px; left:10%; opacity:.22;}
+  #requirements .bg-logo.l3{width:65px; height:65px; top:50%; left:46%; opacity:.16;}
+
+  #deployment .bg-logo.l1{width:120px; height:120px; top:-10px; left:8%; opacity:.20;}
+  #deployment .bg-logo.l2{width:90px; height:90px; bottom:0; right:8%; opacity:.24;}
+
+  #sla .bg-logo.l1{width:130px; height:130px; top:-20px; right:6%; opacity:.18;}
+  #sla .bg-logo.l2{width:85px; height:85px; bottom:-10px; left:10%; opacity:.24;}
+
+  #pricing .bg-logo.l1{width:130px; height:130px; top:-10px; right:10%; opacity:.20;}
+  #pricing .bg-logo.l2{width:90px; height:90px; bottom:0; left:12%; opacity:.24;}
+
+  #next-steps .bg-logo.l1{width:120px; height:120px; top:-10px; left:6%; opacity:.20;}
+  #next-steps .bg-logo.l2{width:85px; height:85px; bottom:-10px; right:10%; opacity:.24;}
 
   /* ---------- suite (dark band) ---------- */
   :root{
@@ -498,6 +547,14 @@
 </div>
 
 <header class="hero" id="hero">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.10" data-rotate="4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.18" data-rotate="-6"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l3" data-speed="0.06" data-rotate="3"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l4" data-speed="0.22" data-rotate="-5"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l5" data-speed="0.13" data-rotate="5"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l6" data-speed="0.25" data-rotate="-4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <span class="eyebrow" data-i18n="hero-eyebrow">Account brief · Aircall replacement</span>
     <h1 data-i18n="hero-h1">The Ringover file for Acolad</h1>
@@ -558,6 +615,10 @@
 </section>
 
 <section id="ownership">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.14" data-rotate="4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.20" data-rotate="-5"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -630,6 +691,11 @@
 </section>
 
 <section id="priority-needs">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.09" data-rotate="3"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.19" data-rotate="-4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l3" data-speed="0.24" data-rotate="5"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -721,6 +787,11 @@
 </section>
 
 <section id="requirements">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.12" data-rotate="-4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.21" data-rotate="4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l3" data-speed="0.07" data-rotate="3"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -888,6 +959,10 @@
 </section>
 
 <section id="deployment">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.16" data-rotate="5"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.08" data-rotate="-3"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -1022,6 +1097,10 @@
 </section>
 
 <section id="sla">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.11" data-rotate="-4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.19" data-rotate="5"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -1125,6 +1204,10 @@
 </section>
 
 <section id="pricing">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.14" data-rotate="4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.20" data-rotate="-5"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -1192,6 +1275,10 @@
 </section>
 
 <section id="next-steps">
+  <div class="bg-logos" aria-hidden="true">
+    <div class="bg-logo l1" data-speed="0.15" data-rotate="-4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+    <div class="bg-logo l2" data-speed="0.09" data-rotate="4"><div class="bg-logo-float"><img src="ringover_france_logo.jpeg" alt=""></div></div>
+  </div>
   <div class="wrap">
     <div class="section-head">
       <div>
@@ -1562,6 +1649,34 @@ document.getElementById("langToggle").addEventListener("click", () => {
     }, {rootMargin: "-15% 0px -70% 0px", threshold: 0});
     sections.forEach(section => spy.observe(section));
   }
+})();
+
+/* ---------- background Ringover logos: scroll parallax drift ---------- */
+(function initBgLogosScrollParallax(){
+  const logos = Array.from(document.querySelectorAll(".bg-logo"));
+  if(!logos.length) return;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduceMotion) return;
+  let ticking = false;
+  function update(){
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    logos.forEach(logo => {
+      const rect = logo.getBoundingClientRect();
+      const centerOffset = (rect.top + rect.height / 2) - vh / 2;
+      const speed = parseFloat(logo.dataset.speed || "0.14");
+      const rotateMax = parseFloat(logo.dataset.rotate || "0");
+      const y = centerOffset * -speed;
+      const rotate = rotateMax * (centerOffset / vh);
+      logo.style.transform = `translateY(${y}px) rotate(${rotate}deg)`;
+    });
+    ticking = false;
+  }
+  function onScroll(){
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+  update();
 })();
 
 /* ---------- suite-style bands: scroll reveal + mouse-follow spotlight/tilt ---------- */
