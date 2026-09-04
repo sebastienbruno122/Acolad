@@ -422,6 +422,13 @@
     display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700;
   }
 
+  /* ---------- SLA section ---------- */
+  #sla{background:var(--bg-zone-sc);}
+  .sla-list{list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .sla-list li{display:flex; align-items:flex-start; gap:10px; font-size:13.2px; color:var(--ink-soft); line-height:1.55;}
+  .sla-list .dot{flex:0 0 auto; width:6px; height:6px; margin-top:7px; border-radius:50%; background:var(--ink-faint);}
+  td.prio-cell{white-space:nowrap; font-family:var(--font-mono); font-weight:700;}
+
   /* ---------- ownership timeline (before / during / after signature) ---------- */
   #ownership{background:var(--bg-zone-deploy);}
   .ownership-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
@@ -500,6 +507,7 @@
   <a class="side-nav-item" href="#solution-fit" data-target="solution-fit"><span class="tick"></span><span class="side-label" data-i18n="nav-solution">Solution fit</span></a>
   <a class="side-nav-item" href="#deployment" data-target="deployment"><span class="tick"></span><span class="side-label" data-i18n="nav-deploy">Deployment timeline</span></a>
   <a class="side-nav-item" href="#infrastructure" data-target="infrastructure"><span class="tick"></span><span class="side-label" data-i18n="nav-infra">Infrastructure &amp; support</span></a>
+  <a class="side-nav-item" href="#sla" data-target="sla"><span class="tick"></span><span class="side-label" data-i18n="nav-sla">SLA</span></a>
   <a class="side-nav-item" href="#pricing" data-target="pricing"><span class="tick"></span><span class="side-label" data-i18n="nav-pricing">Licensing &amp; pricing</span></a>
   <a class="side-nav-item" href="#next-steps" data-target="next-steps"><span class="tick"></span><span class="side-label" data-i18n="nav-next">Next steps</span></a>
 </nav>
@@ -956,8 +964,8 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2 data-i18n="infra-h2">Infrastructure, SLA &amp; support</h2>
-        <p data-i18n="infra-p">What sits behind the product: where data lives, what's guaranteed, and how you're supported after go-live.</p>
+        <h2 data-i18n="infra-h2">Infrastructure &amp; support</h2>
+        <p data-i18n="infra-p">What sits behind the product: where data lives, and how you're supported after go-live.</p>
       </div>
     </div>
 
@@ -968,11 +976,11 @@
       </div>
       <div class="phase-meta-item">
         <div class="k" data-i18n="infra2-k">Uptime SLA</div>
-        <div class="v"><span class="blank-cell" data-i18n="infra2-v">TBD — % to confirm</span></div>
+        <div class="v" data-i18n="infra2-v">99.95% monthly availability target — see SLA section</div>
       </div>
       <div class="phase-meta-item">
         <div class="k" data-i18n="infra3-k">Support &amp; CSM</div>
-        <div class="v" data-i18n="infra3-v">Dedicated CSM from onboarding onward <span class="blank-cell">TBD — support tiers &amp; response times</span></div>
+        <div class="v" data-i18n="infra3-v">Dedicated CSM from onboarding onward — support response times: P1 2h · P2 4h · P3 1 day</div>
       </div>
     </div>
 
@@ -1010,17 +1018,6 @@
     </div>
 
     <div class="suite-group">
-      <h3 class="suite-subhead" data-i18n="infra-sec3-h3">Network &amp; security architecture</h3>
-      <p class="suite-subhead-intro" data-i18n="infra-sec3-p">Redundant points of presence, firewalling and load balancing in front of every cluster.</p>
-      <div class="infra-media">
-        <figure>
-          <img src="infra-trust-zone.png" alt="Ringover Trust Zone network architecture diagram" loading="lazy">
-          <figcaption data-i18n="infra-trust-caption">Internet transits and telecom operators feed redundant points of presence (firewall + router), load-balanced into API, VoIP, AI and web server clusters.</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <div class="suite-group">
       <h3 class="suite-subhead" data-i18n="infra-sec4-h3">Application &amp; data security</h3>
       <ul class="infra-list">
         <li><span class="tick">✓</span><span data-i18n="infra-sec-li1">Single Sign-On: OIDC &amp; SAML, tested with major identity providers (Google, Microsoft, and others)</span></li>
@@ -1034,8 +1031,110 @@
 
     <p class="count-note" style="margin-top:24px; font-size:13px; color:rgba(232,241,244,.55);" data-i18n="infra-note">
       Datacenters, certifications and security posture above are Ringover's standard infrastructure, shared across all
-      customers. The specific uptime SLA percentage and support-tier response times for Acolad will be confirmed with
-      the account team and filled in before the next proposal.
+      customers. Full support response times and uptime commitment are detailed in the SLA section below.
+    </p>
+  </div>
+</section>
+
+<section id="sla">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="sla-h2">Service Level Agreement</h2>
+        <p data-i18n="sla-p">Support response times, uptime commitment, and service credits — from Ringover's standard SLA (Appendix 5, June 18, 2025).</p>
+      </div>
+    </div>
+
+    <div class="phase-meta">
+      <div class="phase-meta-item">
+        <div class="k" data-i18n="sla1-k">Uptime target</div>
+        <div class="v" data-i18n="sla1-v">99.95% monthly availability</div>
+      </div>
+      <div class="phase-meta-item">
+        <div class="k" data-i18n="sla2-k">Incident reporting</div>
+        <div class="v" data-i18n="sla2-v">24/7, to support@ringover.com</div>
+      </div>
+      <div class="phase-meta-item">
+        <div class="k" data-i18n="sla3-k">Restoration intent</div>
+        <div class="v" data-i18n="sla3-v">Within 2 hours of the report</div>
+      </div>
+    </div>
+
+    <div class="table-block">
+      <div class="table-block-head">
+        <h3 data-i18n="sla-t1-h3">Priority levels &amp; response times</h3>
+      </div>
+      <div class="table-panel">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th data-i18n="sla-th1">Priority</th><th data-i18n="sla-th2">Definition</th><th data-i18n="sla-th3">Initial response</th><th data-i18n="sla-th4">What happens next</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="prio-cell">P1</td>
+                <td data-i18n="sla-p1-def">Major anomaly — Services unusable</td>
+                <td><span class="badge bad"><span class="d"></span>2h</span></td>
+                <td class="chapitre" data-i18n="sla-p1-next">Hour 1: Level 1 support qualifies &amp; escalates to Level 2. Hours 2–6: Level 2 reproduces and works the fix; a workaround may be provided. Hours 6–8: the Technical Director &amp; Chief Customer Officer are informed and a specialist team is mobilized.</td>
+              </tr>
+              <tr>
+                <td class="prio-cell">P2</td>
+                <td data-i18n="sla-p2-def">Blocking anomaly on a major functionality</td>
+                <td><span class="badge warn"><span class="d"></span>4h</span></td>
+                <td class="chapitre" data-i18n="sla-p2-next">Hours 1–2: Level 1 qualifies &amp; escalates. Days 1–2: Level 2/3 support work with the development team on a workaround or a fix.</td>
+              </tr>
+              <tr>
+                <td class="prio-cell">P3</td>
+                <td data-i18n="sla-p3-def">Minor anomaly, no significant impact</td>
+                <td><span class="badge dev"><span class="d"></span>1 <span data-i18n="sla-day">day</span></span></td>
+                <td class="chapitre" data-i18n="sla-p3-next">Handled by the support team within a week.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="count-note" data-i18n="sla-t1-note">RINGOVER's priority qualification prevails and takes precedence over the customer's own qualification. Best-efforts action plan, during Support team business hours, on production platforms.</p>
+    </div>
+
+    <div class="table-block">
+      <div class="table-block-head">
+        <h3 data-i18n="sla-t2-h3">Service credits if the target is missed</h3>
+        <span class="table-note" data-i18n="sla-t2-note">On request, as a credit note — not a refund</span>
+      </div>
+      <div class="table-panel">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th data-i18n="sla-th5">Monthly availability</th><th data-i18n="sla-th6">Credit</th></tr>
+            </thead>
+            <tbody>
+              <tr><td data-i18n="sla-band1">Between 99.95% and 99.5%</td><td>5%</td></tr>
+              <tr><td data-i18n="sla-band2">Between 99.5% and 99%</td><td>10%</td></tr>
+              <tr><td data-i18n="sla-band3">Below 99%</td><td>20%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="count-note" data-i18n="sla-credit-note">Credit = % of that month's invoice. Must be requested within one month of the incident, with dates, times, and supporting documentation.</p>
+    </div>
+
+    <div class="table-block">
+      <div class="table-block-head">
+        <h3 data-i18n="sla-t3-h3">SLA exclusions</h3>
+      </div>
+      <ul class="sla-list">
+        <li><span class="dot"></span><span data-i18n="sla-excl1">Factors outside Ringover's reasonable control — hosting/datacenter provider, ISP, or telecom operator incidents beyond Ringover's network</span></li>
+        <li><span class="dot"></span><span data-i18n="sla-excl2">Any act or omission by the customer or a third party</span></li>
+        <li><span class="dot"></span><span data-i18n="sla-excl3">Customer or third-party equipment, application, software, or other technology</span></li>
+        <li><span class="dot"></span><span data-i18n="sla-excl4">Scheduled or emergency maintenance by Ringover</span></li>
+        <li><span class="dot"></span><span data-i18n="sla-excl5">Force majeure</span></li>
+        <li><span class="dot"></span><span data-i18n="sla-excl6">Use of an obsolete or outdated version of the Ringover mobile app</span></li>
+      </ul>
+    </div>
+
+    <p class="count-note" style="margin-top:20px; font-size:13px;" data-i18n="sla-note">
+      This SLA does not apply to Empower Services or during a free trial period. Source: Ringover Inc. SLA, Appendix 5,
+      June 18, 2025 — full terms available on request.
     </p>
   </div>
 </section>
@@ -1179,6 +1278,7 @@ const I18N = {
   "nav-solution": {en:"Solution fit", fr:"Réponse Ringover"},
   "nav-deploy": {en:"Deployment timeline", fr:"Chronologie de déploiement"},
   "nav-infra": {en:"Infrastructure &amp; support", fr:"Infrastructure &amp; support"},
+  "nav-sla": {en:"SLA", fr:"SLA"},
   "nav-pricing": {en:"Licensing &amp; pricing", fr:"Licences &amp; tarification"},
   "nav-next": {en:"Next steps", fr:"Prochaines étapes"},
   "hero-eyebrow": {en:"Account brief · Aircall replacement", fr:"Dossier de compte · Remplacement Aircall"},
@@ -1302,23 +1402,20 @@ const I18N = {
   "deploy-item7": {en:"Q&amp;A", fr:"Q&amp;R"},
   "deploy-item8": {en:"End of onboarding", fr:"Fin d'onboarding"},
   "deploy-note": {en:"Portability is weighted higher than in a typical single-country rollout, given Acolad's 582 numbers across multiple countries.", fr:"La portabilité pèse plus que dans un déploiement mono-pays classique, compte tenu des 582 numéros d'Acolad répartis sur plusieurs pays."},
-  "infra-h2": {en:"Infrastructure, SLA &amp; support", fr:"Infrastructure, SLA &amp; support"},
-  "infra-p": {en:"What sits behind the product: where data lives, what's guaranteed, and how you're supported after go-live.", fr:"Ce qu'il y a derrière le produit : où vivent les données, ce qui est garanti, et comment vous êtes accompagné après le go-live."},
+  "infra-h2": {en:"Infrastructure &amp; support", fr:"Infrastructure &amp; support"},
+  "infra-p": {en:"What sits behind the product: where data lives, and how you're supported after go-live.", fr:"Ce qu'il y a derrière le produit : où vivent les données, et comment vous êtes accompagné après le go-live."},
   "infra1-k": {en:"Datacenters", fr:"Datacenters"},
   "infra1-v": {en:"16 sites across France, the US, UK, Spain, Colombia, South Africa, Singapore &amp; Australia — ISO 27001 certified at minimum", fr:"16 sites répartis entre la France, les États-Unis, le Royaume-Uni, l'Espagne, la Colombie, l'Afrique du Sud, Singapour &amp; l'Australie — certifiés ISO 27001 au minimum"},
   "infra2-k": {en:"Uptime SLA", fr:"SLA de disponibilité"},
-  "infra2-v": {en:"TBD — % to confirm", fr:"À déterminer — % à confirmer"},
+  "infra2-v": {en:"99.95% monthly availability target — see SLA section", fr:"Objectif de disponibilité mensuelle de 99,95 % — voir la section SLA"},
   "infra3-k": {en:"Support &amp; CSM", fr:"Support &amp; CSM"},
-  "infra3-v": {en:"Dedicated CSM from onboarding onward <span class=\"blank-cell\">TBD — support tiers &amp; response times</span>", fr:"CSM dédié dès l'onboarding <span class=\"blank-cell\">À déterminer — niveaux de support &amp; délais de réponse</span>"},
+  "infra3-v": {en:"Dedicated CSM from onboarding onward — support response times: P1 2h · P2 4h · P3 1 day", fr:"CSM dédié dès l'onboarding — délais de réponse support : P1 2h · P2 4h · P3 1 jour"},
   "infra-sec1-h3": {en:"Global datacenter footprint", fr:"Empreinte mondiale des datacenters"},
   "infra-sec1-p": {en:"Points of presence across Europe, the Americas, Africa and Asia-Pacific — relevant to Acolad's multi-country rollout.", fr:"Points de présence en Europe, Amériques, Afrique et Asie-Pacifique — pertinent pour le déploiement multi-pays d'Acolad."},
   "infra-map-caption": {en:"France (Paris, Ivry-sur-Seine, Saint-Denis), USA (San Jose, Miami, Dallas, New York, Atlanta, Chicago), UK (London), Spain (Madrid), Colombia (Bogota), South Africa (Johannesburg), Singapore, Australia (Sydney).", fr:"France (Paris, Ivry-sur-Seine, Saint-Denis), États-Unis (San Jose, Miami, Dallas, New York, Atlanta, Chicago), Royaume-Uni (Londres), Espagne (Madrid), Colombie (Bogota), Afrique du Sud (Johannesburg), Singapour, Australie (Sydney)."},
   "infra-sec2-h3": {en:"Certifications", fr:"Certifications"},
   "infra-sec2-p": {en:"Every site carries ISO 27001 (information security) at minimum; the primary EU and US sites add ISO 9001, 22301, 45001, PCI DSS and SOC 2.", fr:"Chaque site est certifié ISO 27001 (sécurité de l'information) au minimum ; les principaux sites UE et US ajoutent ISO 9001, 22301, 45001, PCI DSS et SOC 2."},
   "infra-cert-caption": {en:"Full certification matrix by datacenter, on request.", fr:"Matrice complète des certifications par datacenter, sur demande."},
-  "infra-sec3-h3": {en:"Network &amp; security architecture", fr:"Architecture réseau &amp; sécurité"},
-  "infra-sec3-p": {en:"Redundant points of presence, firewalling and load balancing in front of every cluster.", fr:"Points de présence redondants, pare-feu et répartition de charge devant chaque cluster."},
-  "infra-trust-caption": {en:"Internet transits and telecom operators feed redundant points of presence (firewall + router), load-balanced into API, VoIP, AI and web server clusters.", fr:"Les transits Internet et opérateurs télécom alimentent des points de présence redondants (pare-feu + routeur), répartis en charge vers les clusters API, VoIP, IA et serveurs web."},
   "infra-sec4-h3": {en:"Application &amp; data security", fr:"Sécurité applicative &amp; des données"},
   "infra-sec-li1": {en:"Single Sign-On: OIDC &amp; SAML, tested with major identity providers (Google, Microsoft, and others)", fr:"Authentification unique (SSO) : OIDC &amp; SAML, testé avec les principaux fournisseurs d'identité (Google, Microsoft, entre autres)"},
   "infra-sec-li2": {en:"Strong password policy, with two-factor authentication available", fr:"Politique de mot de passe stricte, avec authentification à deux facteurs disponible"},
@@ -1327,8 +1424,48 @@ const I18N = {
   "infra-sec-li5": {en:"Dedicated in-house SOC (Security Operations Center) team", fr:"Équipe SOC (Security Operations Center) interne dédiée"},
   "infra-sec-li6": {en:"External penetration tests twice a year — executive summary available on request", fr:"Tests d'intrusion externes deux fois par an — synthèse disponible sur demande"},
   "infra-note": {
-    en:"Datacenters, certifications and security posture above are Ringover's standard infrastructure, shared across all customers. The specific uptime SLA percentage and support-tier response times for Acolad will be confirmed with the account team and filled in before the next proposal.",
-    fr:"Les datacenters, certifications et dispositif de sécurité ci-dessus sont l'infrastructure standard de Ringover, commune à tous les clients. Le pourcentage de SLA de disponibilité et les délais de réponse par niveau de support spécifiques à Acolad seront confirmés avec l'équipe commerciale et complétés avant la prochaine proposition."
+    en:"Datacenters, certifications and security posture above are Ringover's standard infrastructure, shared across all customers. Full support response times and uptime commitment are detailed in the SLA section below.",
+    fr:"Les datacenters, certifications et dispositif de sécurité ci-dessus sont l'infrastructure standard de Ringover, commune à tous les clients. Les délais de réponse support et l'engagement de disponibilité complets sont détaillés dans la section SLA ci-dessous."
+  },
+  "sla-h2": {en:"Service Level Agreement", fr:"Accord de niveau de service (SLA)"},
+  "sla-p": {en:"Support response times, uptime commitment, and service credits — from Ringover's standard SLA (Appendix 5, June 18, 2025).", fr:"Délais de réponse support, engagement de disponibilité et crédits de service — issus du SLA standard de Ringover (Annexe 5, 18 juin 2025)."},
+  "sla1-k": {en:"Uptime target", fr:"Objectif de disponibilité"},
+  "sla1-v": {en:"99.95% monthly availability", fr:"99,95 % de disponibilité mensuelle"},
+  "sla2-k": {en:"Incident reporting", fr:"Signalement d'incident"},
+  "sla2-v": {en:"24/7, to support@ringover.com", fr:"24h/24, 7j/7, à support@ringover.com"},
+  "sla3-k": {en:"Restoration intent", fr:"Objectif de rétablissement"},
+  "sla3-v": {en:"Within 2 hours of the report", fr:"Dans les 2 heures suivant le signalement"},
+  "sla-t1-h3": {en:"Priority levels &amp; response times", fr:"Niveaux de priorité &amp; délais de réponse"},
+  "sla-th1": {en:"Priority", fr:"Priorité"},
+  "sla-th2": {en:"Definition", fr:"Définition"},
+  "sla-th3": {en:"Initial response", fr:"Réponse initiale"},
+  "sla-th4": {en:"What happens next", fr:"Ce qui se passe ensuite"},
+  "sla-p1-def": {en:"Major anomaly — Services unusable", fr:"Anomalie majeure — Services inutilisables"},
+  "sla-p1-next": {en:"Hour 1: Level 1 support qualifies &amp; escalates to Level 2. Hours 2–6: Level 2 reproduces and works the fix; a workaround may be provided. Hours 6–8: the Technical Director &amp; Chief Customer Officer are informed and a specialist team is mobilized.", fr:"Heure 1 : le support niveau 1 qualifie &amp; escalade au niveau 2. Heures 2 à 6 : le niveau 2 reproduit et travaille sur la résolution ; un contournement peut être fourni. Heures 6 à 8 : le Directeur Technique &amp; le Chief Customer Officer sont informés et une équipe de spécialistes est mobilisée."},
+  "sla-p2-def": {en:"Blocking anomaly on a major functionality", fr:"Anomalie bloquante sur une fonctionnalité majeure"},
+  "sla-p2-next": {en:"Hours 1–2: Level 1 qualifies &amp; escalates. Days 1–2: Level 2/3 support work with the development team on a workaround or a fix.", fr:"Heures 1 à 2 : le niveau 1 qualifie &amp; escalade. Jours 1 et 2 : les niveaux 2/3 travaillent avec l'équipe de développement sur un contournement ou une résolution."},
+  "sla-p3-def": {en:"Minor anomaly, no significant impact", fr:"Anomalie mineure, sans impact significatif"},
+  "sla-p3-next": {en:"Handled by the support team within a week.", fr:"Traitée par l'équipe support sous une semaine."},
+  "sla-day": {en:"day", fr:"jour"},
+  "sla-t1-note": {en:"RINGOVER's priority qualification prevails and takes precedence over the customer's own qualification. Best-efforts action plan, during Support team business hours, on production platforms.", fr:"La qualification de priorité par RINGOVER prévaut sur celle du client. Plan d'action en moyens, pendant les horaires ouvrés du support, sur les plateformes de production."},
+  "sla-t2-h3": {en:"Service credits if the target is missed", fr:"Crédits de service en cas d'objectif non atteint"},
+  "sla-t2-note": {en:"On request, as a credit note — not a refund", fr:"Sur demande, sous forme d'avoir — pas de remboursement"},
+  "sla-th5": {en:"Monthly availability", fr:"Disponibilité mensuelle"},
+  "sla-th6": {en:"Credit", fr:"Crédit"},
+  "sla-band1": {en:"Between 99.95% and 99.5%", fr:"Entre 99,95 % et 99,5 %"},
+  "sla-band2": {en:"Between 99.5% and 99%", fr:"Entre 99,5 % et 99 %"},
+  "sla-band3": {en:"Below 99%", fr:"En dessous de 99 %"},
+  "sla-credit-note": {en:"Credit = % of that month's invoice. Must be requested within one month of the incident, with dates, times, and supporting documentation.", fr:"Crédit = % de la facture du mois concerné. À demander dans le mois suivant l'incident, avec dates, horaires et justificatifs."},
+  "sla-t3-h3": {en:"SLA exclusions", fr:"Exclusions du SLA"},
+  "sla-excl1": {en:"Factors outside Ringover's reasonable control — hosting/datacenter provider, ISP, or telecom operator incidents beyond Ringover's network", fr:"Facteurs hors du contrôle raisonnable de Ringover — incidents du fournisseur d'hébergement/datacenter, du FAI ou d'un opérateur télécom en dehors du réseau de Ringover"},
+  "sla-excl2": {en:"Any act or omission by the customer or a third party", fr:"Tout acte ou omission du client ou d'un tiers"},
+  "sla-excl3": {en:"Customer or third-party equipment, application, software, or other technology", fr:"Équipement, application, logiciel ou autre technologie du client ou d'un tiers"},
+  "sla-excl4": {en:"Scheduled or emergency maintenance by Ringover", fr:"Maintenance planifiée ou d'urgence par Ringover"},
+  "sla-excl5": {en:"Force majeure", fr:"Force majeure"},
+  "sla-excl6": {en:"Use of an obsolete or outdated version of the Ringover mobile app", fr:"Utilisation d'une version obsolète ou dépassée de l'application mobile Ringover"},
+  "sla-note": {
+    en:"This SLA does not apply to Empower Services or during a free trial period. Source: Ringover Inc. SLA, Appendix 5, June 18, 2025 — full terms available on request.",
+    fr:"Ce SLA ne s'applique pas aux services Empower ni pendant une période d'essai gratuit. Source : SLA Ringover Inc., Annexe 5, 18 juin 2025 — conditions complètes disponibles sur demande."
   },
   "pricing-h2": {en:"Licensing &amp; pricing", fr:"Licences &amp; tarification"},
   "pricing-p": {en:"The licence split under discussion, and what still needs to be settled before the next proposal.", fr:"La répartition des licences en discussion, et ce qu'il reste à trancher avant la prochaine proposition."},
