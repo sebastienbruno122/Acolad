@@ -425,10 +425,6 @@
 
   /* ---------- ownership timeline (before / during / after signature) ---------- */
   #ownership{background:var(--bg-zone-deploy);}
-  .ownership-lane{margin-top:36px;}
-  .ownership-lane:first-of-type{margin-top:28px;}
-  .ownership-lane-head{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;}
-  .ownership-lane-head h3{margin:0; font-size:16.5px; font-family:var(--font-display);}
   .ownership-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
   @media (max-width:760px){ .ownership-grid{grid-template-columns:1fr;} }
   .ownership-stage{
@@ -450,24 +446,6 @@
   .stage-note{margin:2px 0 0; font-size:12px; color:var(--ink-faint); line-height:1.5;}
 
   /* ---------- avatar rows attached directly under the progress bar ---------- */
-  .owner-track{margin-top:18px; display:flex; flex-direction:column; gap:16px;}
-  .owner-track-row-label{
-    font-family:var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em;
-    color:var(--ink-faint); font-weight:600; margin-bottom:8px;
-  }
-  .owner-track-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
-  @media (max-width:640px){ .owner-track-grid{grid-template-columns:1fr;} }
-  .owner-track-cell{display:flex; flex-wrap:wrap; gap:10px; align-items:flex-start; justify-content:center;}
-  @media (max-width:640px){ .owner-track-cell{justify-content:flex-start;} }
-  .mini-owner{display:flex; flex-direction:column; align-items:center; gap:5px; width:56px;}
-  .mini-owner .avatar-sm{
-    width:38px; height:38px; border-radius:50%; overflow:hidden; flex:0 0 auto;
-    border:2px solid var(--panel); box-shadow:0 0 0 1px var(--panel-border);
-    display:flex; align-items:center; justify-content:center;
-    background:var(--teal-wash); color:var(--teal-deep); font-family:var(--font-display); font-weight:700; font-size:12px;
-  }
-  .mini-owner .avatar-sm img{width:100%; height:100%; object-fit:cover; display:block;}
-  .mini-owner .label-sm{font-size:9.5px; color:var(--ink-soft); text-align:center; line-height:1.25; max-width:58px;}
   .person-card{
     background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius);
     padding:26px 20px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
@@ -609,62 +587,51 @@
         <span data-i18n="own-stage3">After signature</span>
       </div>
 
-      <div class="owner-track">
-        <div>
-          <div class="owner-track-row-label" data-i18n="own-lane2-h3">Number portability</div>
-          <div class="owner-track-grid">
-            <div class="owner-track-cell">
-              <div class="mini-owner">
-                <div class="avatar-sm"><img src="photo-sybille.jpeg" alt="Sybille Canneau" title="Sybille Canneau — Portability Lead" loading="lazy"></div>
-                <span class="label-sm">Sybille</span>
-              </div>
-            </div>
-            <div class="owner-track-cell">
-              <div class="mini-owner">
-                <div class="avatar-sm"><img src="photo-sybille.jpeg" alt="Sybille Canneau" title="Sybille Canneau — Portability Lead" loading="lazy"></div>
-                <span class="label-sm">Sybille</span>
-              </div>
-            </div>
-            <div class="owner-track-cell">
-              <div class="mini-owner">
-                <div class="avatar-sm"><img src="photo-sybille.jpeg" alt="Sybille Canneau" title="Sybille Canneau — Portability Lead" loading="lazy"></div>
-                <span class="label-sm">Sybille</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="ownership-lane">
-      <div class="ownership-lane-head">
-        <h3 data-i18n="own-lane2-h3">Number portability</h3>
-      </div>
-      <div class="ownership-grid">
+      <div class="ownership-grid" style="margin-top:20px;">
         <div class="ownership-stage">
           <span class="stage-tag" data-i18n="own-stage1">Before signature</span>
+          <div class="owner-chip">
+            <div class="mini-avatar"><img src="photo-sebastien.jpeg" alt="Sébastien Bruno" loading="lazy"></div>
+            <div class="who"><span class="name">Sébastien Bruno</span><span class="role" data-i18n="role-se">Lead Solution Engineer</span></div>
+          </div>
           <div class="owner-chip">
             <div class="mini-avatar"><img src="photo-sybille.jpeg" alt="Sybille Canneau" loading="lazy"></div>
             <div class="who"><span class="name">Sybille Canneau</span><span class="role" data-i18n="role-portability">Portability Lead</span></div>
           </div>
-          <p class="stage-note" data-i18n="own-port-note1">Scopes porting constraints and number handling per country.</p>
         </div>
         <div class="ownership-stage">
           <span class="stage-tag" data-i18n="own-stage2">During signature</span>
           <div class="owner-chip">
-            <div class="mini-avatar"><img src="photo-sybille.jpeg" alt="Sybille Canneau" loading="lazy"></div>
-            <div class="who"><span class="name">Sybille Canneau</span><span class="role" data-i18n="role-portability">Portability Lead</span></div>
+            <div class="mini-avatar"><img src="photo-sebastien.jpeg" alt="Sébastien Bruno" loading="lazy"></div>
+            <div class="who"><span class="name">Sébastien Bruno</span><span class="role" data-i18n="role-se">Lead Solution Engineer</span></div>
           </div>
-          <p class="stage-note" data-i18n="own-port-note2">Collects RIO forms &amp; mandates and coordinates the number switch-over during cutover.</p>
-        </div>
-        <div class="ownership-stage">
-          <span class="stage-tag" data-i18n="own-stage3">After signature</span>
+          <div class="owner-chip">
+            <div class="mini-avatar"><img src="photo-josua.jpeg" alt="Josua Vischel" loading="lazy"></div>
+            <div class="who"><span class="name">Josua Vischel</span><span class="role" data-i18n="role-ae">Account Executive</span></div>
+          </div>
+          <div class="owner-chip">
+            <div class="mini-avatar"><img src="photo-narjess.jpeg" alt="Narjess Gmir" loading="lazy"></div>
+            <div class="who"><span class="name">Narjess Gmir</span><span class="role" data-i18n="role-ae">Account Executive</span></div>
+          </div>
+          <div class="owner-chip">
+            <div class="mini-avatar"><img src="photo-lilia.jpeg" alt="Lilia Payet" loading="lazy"></div>
+            <div class="who"><span class="name">Lilia Payet</span><span class="role" data-i18n="role-csm">Customer Success Manager</span></div>
+          </div>
           <div class="owner-chip">
             <div class="mini-avatar"><img src="photo-sybille.jpeg" alt="Sybille Canneau" loading="lazy"></div>
             <div class="who"><span class="name">Sybille Canneau</span><span class="role" data-i18n="role-portability">Portability Lead</span></div>
           </div>
-          <p class="stage-note" data-i18n="own-port-note3">Confirms every number ported cleanly, with no service interruption.</p>
+        </div>
+        <div class="ownership-stage">
+          <span class="stage-tag" data-i18n="own-stage3">After signature</span>
+          <div class="owner-chip">
+            <div class="mini-avatar"><img src="photo-lilia.jpeg" alt="Lilia Payet" loading="lazy"></div>
+            <div class="who"><span class="name">Lilia Payet</span><span class="role" data-i18n="role-csm">Customer Success Manager</span></div>
+          </div>
+          <div class="owner-chip">
+            <div class="mini-avatar"><img src="photo-sybille.jpeg" alt="Sybille Canneau" loading="lazy"></div>
+            <div class="who"><span class="name">Sybille Canneau</span><span class="role" data-i18n="role-portability">Portability Lead</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1270,11 +1237,10 @@ const I18N = {
   "own-stage1": {en:"Before signature", fr:"Avant la signature"},
   "own-stage2": {en:"During signature", fr:"Pendant la signature"},
   "own-stage3": {en:"After signature", fr:"Après la signature"},
-  "own-lane2-h3": {en:"Number portability", fr:"Portabilité des numéros"},
+  "role-se": {en:"Lead Solution Engineer", fr:"Lead Solution Engineer"},
+  "role-ae": {en:"Account Executive", fr:"Account Executive"},
+  "role-csm": {en:"Customer Success Manager", fr:"Customer Success Manager"},
   "role-portability": {en:"Portability Lead", fr:"Responsable Portabilité"},
-  "own-port-note1": {en:"Scopes porting constraints and number handling per country.", fr:"Cadre les contraintes de portabilité et la gestion des numéros par pays."},
-  "own-port-note2": {en:"Collects RIO forms &amp; mandates and coordinates the number switch-over during cutover.", fr:"Récupère les RIO &amp; mandats et coordonne la bascule des numéros pendant la migration."},
-  "own-port-note3": {en:"Confirms every number ported cleanly, with no service interruption.", fr:"Vérifie que chaque numéro a été porté proprement, sans interruption de service."},
   "acct-eyebrow": {en:"Account", fr:"Compte"},
   "acct-h2": {en:"Acolad group", fr:"Groupe Acolad"},
   "acct-p": {en:"Snapshot of where the account stands today, based on the calls and CRM activity reviewed so far.", fr:"Photographie de l'état du compte à date, sur la base des appels et de l'activité CRM analysés jusqu'ici."},
