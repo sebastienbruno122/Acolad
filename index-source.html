@@ -50,45 +50,29 @@
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
   @media (max-width:640px){ .wrap{padding:0 18px;} body{font-size:15px;} }
 
-  /* ---------- side nav ---------- */
-  .side-nav{
-    position:fixed; left:20px; top:50%; transform:translateY(-50%); z-index:50;
-    display:flex; flex-direction:column;
+  /* ---------- top nav (sticky, horizontal) ---------- */
+  .topnav-wrap{
+    border-top:1px solid var(--panel-border);
+    overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scrollbar-width:none;
   }
-  @media (max-width:980px){ .side-nav{display:none;} }
-  .side-nav-item{
-    display:flex; align-items:center; gap:11px;
-    padding:9px 4px; text-decoration:none; cursor:pointer; -webkit-tap-highlight-color:transparent;
+  .topnav-wrap::-webkit-scrollbar{display:none;}
+  .topnav{
+    display:flex; gap:2px; white-space:nowrap;
+    max-width:1180px; margin:0 auto; padding:0 28px;
   }
-  .side-nav-item .tick{
-    width:13px; height:2px; border-radius:2px; flex:0 0 auto;
-    background:var(--ink-faint); opacity:.55;
-    transition:width .25s ease, background-color .25s ease, opacity .25s ease;
+  @media (max-width:640px){ .topnav{padding:0 18px;} }
+  .topnav-item{
+    flex:0 0 auto; display:block;
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:.02em; text-transform:uppercase;
+    color:var(--ink-faint); text-decoration:none; cursor:pointer; -webkit-tap-highlight-color:transparent;
+    padding:11px 13px; border-bottom:2px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
   }
-  .side-nav-item .side-label{
-    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.03em; text-transform:uppercase;
-    white-space:nowrap; color:var(--ink-faint); opacity:.6;
-    transition:color .25s ease, opacity .25s ease;
-  }
-  .side-nav-item:hover .tick, .side-nav-item:focus-visible .tick, .side-nav-item.active .tick{
-    width:26px; background:var(--teal-deep); opacity:1;
-  }
-  .side-nav-item:hover .side-label, .side-nav-item:focus-visible .side-label, .side-nav-item.active .side-label{
-    color:var(--ink); opacity:1;
-  }
-  .side-nav-item.active .side-label{font-weight:600;}
-  .side-nav-item:focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:3px;}
-  .side-nav.on-dark .side-nav-item .tick{background:rgba(255,255,255,.4);}
-  .side-nav.on-dark .side-nav-item .side-label{color:rgba(232,241,244,.65);}
-  .side-nav.on-dark .side-nav-item:hover .tick,
-  .side-nav.on-dark .side-nav-item:focus-visible .tick,
-  .side-nav.on-dark .side-nav-item.active .tick{background:var(--teal);}
-  .side-nav.on-dark .side-nav-item:hover .side-label,
-  .side-nav.on-dark .side-nav-item:focus-visible .side-label,
-  .side-nav.on-dark .side-nav-item.active .side-label{color:#fff;}
-
+  .topnav-item:hover{color:var(--ink);}
+  .topnav-item.active{color:var(--teal-deep); border-color:var(--teal-deep); font-weight:600;}
+  .topnav-item:focus-visible{outline:2px solid var(--teal); outline-offset:-2px; border-radius:3px;}
   @media (prefers-reduced-motion: reduce){
-    .side-nav-item .tick, .side-nav-item .side-label{transition:none;}
+    .topnav-item{transition:none;}
   }
 
   /* ---------- top bar ---------- */
@@ -496,21 +480,22 @@
       <button type="button" class="lang-toggle" id="langToggle" aria-label="Switch language / Changer de langue">FR</button>
     </div>
   </div>
+  <div class="topnav-wrap">
+    <nav class="topnav" aria-label="Section navigation" id="topNav">
+      <a class="topnav-item active" href="#hero" data-target="hero" data-i18n="nav-home">Home</a>
+      <a class="topnav-item" href="#team" data-target="team" data-i18n="nav-team">Team</a>
+      <a class="topnav-item" href="#ownership" data-target="ownership" data-i18n="nav-ownership">Ownership</a>
+      <a class="topnav-item" href="#priority-needs" data-target="priority-needs" data-i18n="nav-needs">Priority needs</a>
+      <a class="topnav-item" href="#requirements" data-target="requirements" data-i18n="nav-requirements">Requirements</a>
+      <a class="topnav-item" href="#solution-fit" data-target="solution-fit" data-i18n="nav-solution">Solution fit</a>
+      <a class="topnav-item" href="#deployment" data-target="deployment" data-i18n="nav-deploy">Deployment timeline</a>
+      <a class="topnav-item" href="#infrastructure" data-target="infrastructure" data-i18n="nav-infra">Infrastructure &amp; support</a>
+      <a class="topnav-item" href="#sla" data-target="sla" data-i18n="nav-sla">SLA</a>
+      <a class="topnav-item" href="#pricing" data-target="pricing" data-i18n="nav-pricing">Licensing &amp; pricing</a>
+      <a class="topnav-item" href="#next-steps" data-target="next-steps" data-i18n="nav-next">Next steps</a>
+    </nav>
+  </div>
 </div>
-
-<nav class="side-nav" aria-label="Quick navigation" id="sideNav">
-  <a class="side-nav-item active" href="#hero" data-target="hero"><span class="tick"></span><span class="side-label" data-i18n="nav-home">Home</span></a>
-  <a class="side-nav-item" href="#team" data-target="team"><span class="tick"></span><span class="side-label" data-i18n="nav-team">Team</span></a>
-  <a class="side-nav-item" href="#ownership" data-target="ownership"><span class="tick"></span><span class="side-label" data-i18n="nav-ownership">Ownership</span></a>
-  <a class="side-nav-item" href="#priority-needs" data-target="priority-needs"><span class="tick"></span><span class="side-label" data-i18n="nav-needs">Priority needs</span></a>
-  <a class="side-nav-item" href="#requirements" data-target="requirements"><span class="tick"></span><span class="side-label" data-i18n="nav-requirements">Requirements</span></a>
-  <a class="side-nav-item" href="#solution-fit" data-target="solution-fit"><span class="tick"></span><span class="side-label" data-i18n="nav-solution">Solution fit</span></a>
-  <a class="side-nav-item" href="#deployment" data-target="deployment"><span class="tick"></span><span class="side-label" data-i18n="nav-deploy">Deployment timeline</span></a>
-  <a class="side-nav-item" href="#infrastructure" data-target="infrastructure"><span class="tick"></span><span class="side-label" data-i18n="nav-infra">Infrastructure &amp; support</span></a>
-  <a class="side-nav-item" href="#sla" data-target="sla"><span class="tick"></span><span class="side-label" data-i18n="nav-sla">SLA</span></a>
-  <a class="side-nav-item" href="#pricing" data-target="pricing"><span class="tick"></span><span class="side-label" data-i18n="nav-pricing">Licensing &amp; pricing</span></a>
-  <a class="side-nav-item" href="#next-steps" data-target="next-steps"><span class="tick"></span><span class="side-label" data-i18n="nav-next">Next steps</span></a>
-</nav>
 
 <header class="hero" id="hero">
   <div class="wrap">
@@ -1540,16 +1525,18 @@ document.getElementById("langToggle").addEventListener("click", () => {
 })();
 
 /* ---------- side nav: scroll spy + smooth scroll ---------- */
-(function initSideNav(){
-  const nav = document.querySelector(".side-nav");
-  const navItems = Array.from(document.querySelectorAll(".side-nav-item"));
+(function initTopNav(){
+  const navWrap = document.getElementById("topNav");
+  const navItems = Array.from(document.querySelectorAll(".topnav-item"));
   if(!navItems.length) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const DARK_SECTIONS = new Set(["team", "solution-fit", "infrastructure"]);
 
   function setActive(id){
     navItems.forEach(item => item.classList.toggle("active", item.dataset.target === id));
-    nav.classList.toggle("on-dark", DARK_SECTIONS.has(id));
+    const current = navItems.find(item => item.dataset.target === id);
+    if(current && navWrap){
+      current.scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block: "nearest", inline: "center"});
+    }
   }
 
   navItems.forEach(item => {
@@ -1572,7 +1559,7 @@ document.getElementById("langToggle").addEventListener("click", () => {
       entries.forEach(entry => {
         if(entry.isIntersecting) setActive(entry.target.id);
       });
-    }, {rootMargin: "-45% 0px -45% 0px", threshold: 0});
+    }, {rootMargin: "-15% 0px -70% 0px", threshold: 0});
     sections.forEach(section => spy.observe(section));
   }
 })();
