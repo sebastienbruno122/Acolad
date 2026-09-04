@@ -446,6 +446,8 @@
   .infra-media img, .infra-media video{width:100%; height:auto; display:block; border-radius:var(--radius);}
   .infra-media figcaption{font-size:12px; color:rgba(232,241,244,.6); margin-top:10px; line-height:1.5;}
   .infra-media.panel-white img{background:#fff; padding:10px; border:1px solid rgba(255,255,255,.12);}
+  .infra-media.video-showcase{max-width:720px; margin-left:auto; margin-right:auto;}
+  .infra-media.video-showcase video{aspect-ratio:16/9; background:#0A1620;}
   .infra-cert-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
   .infra-list{list-style:none; margin:16px 0 0; padding:0; display:flex; flex-direction:column; gap:10px;}
   .infra-list li{display:flex; align-items:flex-start; gap:10px; font-size:13.4px; color:rgba(232,241,244,.82); line-height:1.5;}
@@ -956,12 +958,12 @@
       </div>
     </div>
 
-    <div class="suite-group">
-      <h3 class="suite-subhead" data-i18n="sol-video-h3">Empower in action</h3>
-      <p class="suite-subhead-intro" data-i18n="sol-video-p">The Empower AI bot: automatic call transcription, summaries, and CRM data population, shown live.</p>
-      <div class="infra-media panel-white" style="max-width:720px;">
+    <div class="suite-group" style="text-align:center;">
+      <h3 class="suite-subhead" data-i18n="sol-video-h3">Rewatch the first demo</h3>
+      <p class="suite-subhead-intro" style="margin-left:auto; margin-right:auto;" data-i18n="sol-video-p">The Empower AI bot: automatic call transcription, summaries, and CRM data population, shown live.</p>
+      <div class="infra-media panel-white video-showcase">
         <figure>
-          <video controls preload="none" playsinline>
+          <video controls preload="metadata" playsinline width="1280" height="720">
             <source src="empower-bot-fe57908e-6687-4919-95d7-3c120771e60d.mp4" type="video/mp4">
           </video>
         </figure>
@@ -1468,7 +1470,7 @@ const I18N = {
   "card3-li1": {en:"Automatic contact &amp; case creation on incoming/outgoing calls", fr:"Création automatique de contact &amp; case sur les appels entrants/sortants"},
   "card3-li2": {en:"Autofill of CRM fields (duration, status, summary)", fr:"Remplissage automatique des champs CRM (durée, statut, résumé)"},
   "card3-li3": {en:"Call summaries logged automatically to the record", fr:"Comptes rendus d'appel consignés automatiquement sur la fiche"},
-  "sol-video-h3": {en:"Empower in action", fr:"Empower en action"},
+  "sol-video-h3": {en:"Rewatch the first demo", fr:"Revoir la première démo"},
   "sol-video-p": {en:"The Empower AI bot: automatic call transcription, summaries, and CRM data population, shown live.", fr:"Le bot IA Empower : transcription automatique des appels, résumés et remplissage du CRM, en situation réelle."},
   "deploy-h2": {en:"Proposed onboarding timeline", fr:"Chronologie de déploiement proposée"},
   "deploy-p": {en:"An illustrative sequence based on Ringover's standard onboarding methodology — exact hours will be scoped once the licence count and portability plan are confirmed.", fr:"Une séquence illustrative basée sur la méthodologie standard d'onboarding de Ringover — les heures exactes seront cadrées une fois le nombre de licences et le plan de portabilité confirmés."},
